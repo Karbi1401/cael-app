@@ -24,7 +24,6 @@ class Core
       }
     }
 
-
     // Require the current controller
     require_once('../app/controllers/' . $this->currentController . '.php');
 
