@@ -1,0 +1,80 @@
+html,
+body,
+header,
+.view.jarallax {
+  height: 100%;
+  min-height: 100%;
+}
+
+.mask-custom {
+  backdrop-filter: blur(8px);
+}
+
+.span-orange {
+  color: #e67e22;
+}
+
+.restaurant-lp .navbar {
+  background-color: #e67e22;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.restaurant-lp .navbar:not(.top-nav-collapse) {
+  background: transparent;
+}
+@media (min-width: 769px) {
+  .restaurant-lp .navbar:not(.top-nav-collapse) {
+    box-shadow: none;
+  }
+}
+@media (max-width: 768px) {
+  .restaurant-lp .navbar:not(.top-nav-collapse) {
+    background: #e67e22;
+  }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  .restaurant-lp .navbar:not(.top-nav-collapse) {
+    background: #e67e22;
+  }
+}
+
+.restaurant-lp .page-footer {
+  background-color: #e67e22;
+}
+.restaurant-lp .page-footer ::-webkit-input-placeholder {
+  color: #fff;
+}
+.restaurant-lp .page-footer ::-moz-placeholder {
+  color: #fff;
+}
+.restaurant-lp .page-footer :-ms-input-placeholder {
+  color: #fff;
+}
+.restaurant-lp .page-footer ::-ms-input-placeholder {
+  color: #fff;
+}
+.restaurant-lp .page-footer ::placeholder {
+  color: #fff;
+}
+
+@media (max-width: 450px) {
+  .restaurant-lp .display-3 {
+    font-size: 3rem;
+  }
+}
+
+.restaurant-lp .divider-new {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+@media (max-width: 768px) {
+  .restaurant-lp .divider-new {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+.restaurant-lp .divider-new:before,
+.restaurant-lp .divider-new:after {
+  height: 3px !important;
+  background: #c7c7c7 !important;
+  margin-top: -0.35rem;
+}
