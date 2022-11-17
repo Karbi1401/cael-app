@@ -11,9 +11,9 @@
   <link rel="icon" type="image/png" sizes="16x16" href="<?php echo URLROOT; ?>/img/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="<?php echo URLROOT; ?>/img/favicon_io/site.webmanifest">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/mdb.min.css">
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/frontend/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/frontend/css/mdb.min.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/frontend/css/style.css">
 </head>
 
 <body class="restaurant-lp">

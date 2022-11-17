@@ -15,7 +15,7 @@
                 </h2>
                 <hr class="hr-light" />
                 <h4 class="subtext-header white-text mt-2 mb-3">
-          
+
                   Cael's Delivery is a family business that not just caters delicious foods,
                 </h4>
                 <h4 class="mb-5 white-text clearfix d-none d-md-inline-block">
