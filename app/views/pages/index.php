@@ -21,7 +21,7 @@
                   but lives with the perspective that nothing makes people closer together like pleasure and laughter.
                 </h4>
               </div>
-              <a href="#" class="btn btn-orange btn-rounded wow fadeInUp" data-wow-delay="0.2s">
+              <a href="<?php echo URLROOT; ?>/pages/menu" class="btn btn-orange btn-rounded wow fadeInUp" data-wow-delay="0.2s">
                 <i class="fas fa-arrow-alt-circle-right mr-2"></i>
                 <span> See Full Menu</span>
               </a>

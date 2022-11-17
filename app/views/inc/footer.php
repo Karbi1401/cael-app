@@ -15,25 +15,19 @@
           Blanditiis praesentium voluptatum deleniti atque corrupti quos
           dolores et quas molestias excepturi sint.
         </p>
-
-        <div class="footer-socials">
-          <a href="https://www.facebook.com/AnalynPabloVizmanos" target="_blank" type="button" class="btn-floating blue">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </div>
       </div>
 
       <hr class="w-100 clearfix d-md-none" />
 
       <div class="col-lg-6 pt-1 pb-1 col-md-6 wow fadeIn" data-wow-delay="0.3s">
         <h5 class="text-uppercase mb-4">
-          <strong>Contact</strong>
+          <strong>Contact Us</strong>
         </h5>
 
-        <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-        <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
-        <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-        <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+        <p><i class="fas fa-home mr-3"></i> 42-22 Pacheco Dr., Lungsod ng Valenzuela, Philippines</p>
+        <p><i class="fas fa-phone mr-3"></i> (+63) 933 866 4039</p>
+        <p><i class="fas fa-envelope mr-3"></i> caelspartymania@gmail.com</p>
+        <a href="https://www.facebook.com/AnalynPabloVizmanos" target="_blank"><i class="fab fa-facebook mr-3"></i> facebook.com/AnalynPabloVizmanos</a>
       </div>
 
       <hr class="w-100 clearfix d-md-none" />
