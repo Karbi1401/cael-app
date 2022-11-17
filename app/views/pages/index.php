@@ -8,7 +8,7 @@
         <div class="container h-100 d-flex justify-content-center align-items-center">
           <div class="row smooth-scroll">
             <div class="col-md-12 text-center">
-              <div class="wow fadeInDown" data-wow-delay="0.2s">
+              <div class="container wow fadeInDown" data-wow-delay="0.2s">
                 <img class="d-block mx-auto mb-4" src="<?php echo URLROOT; ?>/img/logo.png" alt="Cael Logo" width="100">
                 <h2 class="display-3 white-text font-weight-bold mb-2 mt-5 mt-xl-2">
                   <span class="span-orange">Cael's</span> Delivery

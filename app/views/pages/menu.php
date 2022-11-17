@@ -3,14 +3,16 @@
 
 <main>
   <section class="streak streak-photo streak-md" style="
-          background-image: url('<?php echo URLROOT; ?>/img/streak.jpg');
+          background-image: url('<?php echo URLROOT; ?>/img/streak-2.jpg');
         ">
     <div class="flex-center mask rgba-black-strong">
-      <div class="text-center white-text">
-        <h2 class="h2-responsive mb-5">
-          "Food for the body is not enough. There must be food for the soul."
+      <div class="container text-center white-text">
+        <h2 class="display-3 font-weight-bold mb-2 mt-5 mt-xl-2">
+          <span class="span-orange">Cael's</span> Delivery
         </h2>
-        <h5 class="text-center font-italic">~ Dorothy Day</h5>
+        <h4 class="subtext-header mt-2 mb-3">
+          Our collection of tasty, elegant and rich-flavored dishes that surely will leave a good impression that will last for a lifetime.
+        </h4>
       </div>
     </div>
   </section>

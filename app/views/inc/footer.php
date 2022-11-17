@@ -17,7 +17,7 @@
         </p>
 
         <div class="footer-socials">
-          <a type="button" class="btn-floating blue">
+          <a href="https://www.facebook.com/AnalynPabloVizmanos" target="_blank" type="button" class="btn-floating blue">
             <i class="fab fa-facebook-f"></i>
           </a>
         </div>
