@@ -7,13 +7,7 @@
         </h5>
 
         <p>
-          At vero eos et accusamus et iusto odio dignissimos ducimus qui
-          blanditiis praesentium voluptatum deleniti atque corrupti.
-        </p>
-
-        <p class="mb-1-half">
-          Blanditiis praesentium voluptatum deleniti atque corrupti quos
-          dolores et quas molestias excepturi sint.
+          Cael's Delivery is a family business that not just caters delicious foods, but lives with the perspective that nothing makes people closer together like pleasure and laughter.
         </p>
       </div>
 

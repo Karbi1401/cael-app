@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="<?php echo URLROOT; ?>">
       <img src="<?php echo URLROOT; ?>/img/logo-light.png" alt="Cael Logo" width="55">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,12 +16,24 @@
         </li>
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo URLROOT; ?>/users/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Signup</a>
-        </li>
+        <?php if (isset($_SESSION['user_id'])) : ?>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Logout</a>
+          </li>
+        <?php else : ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo URLROOT; ?>/users/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo URLROOT; ?>/users/signup">Sign up</a>
+          </li>
+        <?php endif; ?>
       </ul>
     </div>
   </div>

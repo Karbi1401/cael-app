@@ -5,13 +5,13 @@
   </div>
 
   <div class="breadcrumb-dn mr-auto">
-    <p class="mb-0 h5 span-orange"><?php echo SITENAME; ?> | Admin</p>
+    <p class="mb-0 h5"><?php echo SITENAME; ?> | Admin</p>
   </div>
 
   <ul class="nav navbar-nav nav-flex-icons ml-auto">
 
     <li class="nav-item">
-      <a href="#" class="nav-link waves-effect"><i class="fas fa-sign-out-alt"></i> <span class="clearfix d-none d-sm-inline-block">Logout</span></a>
+      <a href="<?php echo URLROOT; ?>/admins/logout" class="nav-link waves-effect"><i class="fas fa-sign-out-alt"></i> <span class="clearfix d-none d-sm-inline-block">Logout</span></a>
     </li>
 
   </ul>

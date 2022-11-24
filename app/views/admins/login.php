@@ -20,9 +20,9 @@
                 </div>
                 <div class="col-md-6 d-flex justify-content-center align-items-center">
 
-                  <form action="<?php echo URLROOT; ?>/users/login" method="POST">
+                  <form action="<?php echo URLROOT; ?>/admins/login" method="POST">
                     <div class="p-5">
-                      <h3 class="fw-normal span-orange mb-3">Login</h3>
+                      <h3 class="fw-normal span-orange mb-3">Admin Login</h3>
                       <?php success('user_message'); ?>
                       <div class="row">
 

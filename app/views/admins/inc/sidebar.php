@@ -1,4 +1,4 @@
-<header>
+<header class="bg-orange">
   <div id="slide-out" class="side-nav sn-bg-4 fixed">
     <ul class="custom-scrollbar">
       <li class="logo-sn waves-effect py-3">

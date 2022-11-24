@@ -6,6 +6,10 @@ header,
   min-height: 100%;
 }
 
+body {
+  padding-top: 75px;
+}
+
 .mask-custom {
   backdrop-filter: blur(8px);
 }

@@ -40,9 +40,9 @@
                     </td>
                     <td>
                       <div class="d-flex justify-content-around">
-                        <a href="<?php echo URLROOT; ?>/categories/edit/<?php echo $category->category_id; ?>"><i class="fa-solid fa-pen-to-square"></i>
+                        <a href="<?php echo URLROOT; ?>/categories/edit/<?php echo $category->category_id; ?>"><i class="fa-solid fa-pen-to-square teal-text" data-toggle="tooltip" data-placement="top" title="Update Category"></i>
                         </a>
-                        <a onclick="deleteCategory()" href="<?php echo URLROOT; ?>/categories/delete/<?php echo $category->category_id; ?>"><i class="fa-solid fa-trash"></i></a>
+                        <a onclick="deleteCategory()" href="<?php echo URLROOT; ?>/categories/delete/<?php echo $category->category_id; ?>"><i class="fa-solid fa-trash red-text" data-toggle="tooltip" data-placement="top" title="Delete Category"></i></a>
                       </div>
                     </td>
                   </tr>

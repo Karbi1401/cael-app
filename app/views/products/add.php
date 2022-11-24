@@ -53,7 +53,7 @@
                       <input type="file" name="image" class="<?php echo isset($data['product_image_err']) ? 'is-invalid' : '' ?>">
                     </div>
                     <div class="file-path-wrapper">
-                      <input class="file-path validate" type="text" placeholder="Product Image" id="file-path">
+                      <input class="file-path" type="text" placeholder="Product Image" id="file-path">
                     </div>
                   </div>
                 </div>
@@ -67,6 +67,7 @@
             <div class="row">
 
               <div class="col">
+
                 <select class="mdb-select colorful-select dropdown-primary md-form" action="formProduct" name="category_id">
                   <?php foreach ($data['categories'] as $category) : ?>
                     <option value="<?php echo $category->category_id; ?>"><?php echo $category->category_name; ?></option>

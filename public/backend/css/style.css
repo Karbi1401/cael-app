@@ -1,3 +1,7 @@
 .span-orange {
   color: #e67e22;
 }
+
+.bg-orange {
+  background-color: #e67e22 !important;
+}

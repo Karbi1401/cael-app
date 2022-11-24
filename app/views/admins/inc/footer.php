@@ -24,6 +24,10 @@
     minScrollbarLength: 20
   });
 
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
   $(document).ready(function() {
     $('#myTable').DataTable();
   });
