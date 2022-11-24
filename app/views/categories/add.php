@@ -10,18 +10,16 @@
         <div class="card-body">
           <form action="<?php echo URLROOT; ?>/categories/add" method="POST">
             <div class="row">
-              <div class="col">
-                <div class="md-form md-outline">
-                  <input type="text" id="productName" class="form-control <?php echo (!empty($data['category_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['category_name']; ?>" name="category_name">
-                  <label for="productName">Category Name</label>
-                  <span class="invalid-feedback"><?php echo $data['category_name_err']; ?></span>
-                </div>
+              <div class="col mb-3">
+                <label for="categoryName">Category Name</label>
+                <input type="text" id="categoryName" class="form-control <?php echo (!empty($data['category_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['category_name']; ?>" name="category_name">
+                <span class="invalid-feedback"><?php echo $data['category_name_err']; ?></span>
               </div>
             </div>
 
-            <div class="d-grid gap-2 d-md-block">
-              <input class="btn btn-success btn-rounded" type="submit" value="Add Category"></input>
-              <a href="<?php echo URLROOT; ?>/categories" class="btn btn-danger btn-rounded" role="button">Cancel</a>
+            <div class="d-flex gap-2">
+              <button class="btn btn-success w-100" type="submit" value="Add Category">Add Category</button>
+              <a class="btn btn-danger w-100" href="<?php echo URLROOT; ?>/categories" role="button">Cancel</a>
             </div>
 
           </form>

@@ -35,8 +35,7 @@
   $(document).ready(function() {
     $('input[type="file"]').change(function(e) {
       var filepath = e.target.files[0].name;
-      alert(filepath + ' is the selected file .')
-      $("#file-path").val(filepath);;
+      alert(filepath + ' is the selected file .');
     });
   });
 

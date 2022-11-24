@@ -65,7 +65,7 @@ class Category
             					VALUES (:category_name, :user_id)");
 
     $this->db->bind(':category_name', $data['category_name']);
-    $this->db->bind(':user_id', 1);
+    $this->db->bind(':user_id', $_SESSION['user_id']);
 
     if ($this->db->execute()) {
       return true;

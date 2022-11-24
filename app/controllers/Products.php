@@ -120,12 +120,11 @@ class Products extends Controller
         'product_description' => trim($_POST['product_description']),
         'product_image' => $_FILES['image']['name'],
         'product_image_temp' => $_FILES['image']['tmp_name'],
-        'product_status' => $_POST['product_status'],
         'category_id' => $_POST['category_id'],
         'product_name_err' => '',
         'product_price_err' => '',
-        'product_image_err' => '',
         'product_description_err' => '',
+        'product_image_err' => '',
         'category_id_err' => ''
       ];
 
@@ -172,11 +171,12 @@ class Products extends Controller
         'product_description' => $products->product_description,
         'product_image' => $products->product_image,
         'category_id' => $products->category_id,
+        'category_name' => $products->categoryName,
         'categories' => $categories,
-        'product_status' => $products->product_status,
         'product_name_err' => '',
         'product_price_err' => '',
         'product_description_err' => '',
+        'product_image_err' => '',
         'category_id_err' => ''
       ];
 

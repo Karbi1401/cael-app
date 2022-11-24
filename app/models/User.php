@@ -36,7 +36,7 @@ class User
   // Login User
   public function login($username, $password)
   {
-    $this->db->query('SELECT * FROM user WHERE user_username = :username AND user_role = "user"');
+    $this->db->query('SELECT * FROM user WHERE user_username = :username');
     $this->db->bind(':username', $username);
 
     $row = $this->db->single();
@@ -52,7 +52,7 @@ class User
   // Find user by email
   public function findUserByEmail($email)
   {
-    $this->db->query('SELECT * FROM user WHERE user_email = :email AND user_role = "user"');
+    $this->db->query('SELECT * FROM user WHERE user_email = :email');
     // Bind value
     $this->db->bind(':email', $email);
 
@@ -69,7 +69,7 @@ class User
   // Find user by username
   public function findUserByUsername($username)
   {
-    $this->db->query('SELECT * FROM user WHERE user_username = :username AND user_role = "user"');
+    $this->db->query('SELECT * FROM user WHERE user_username = :username');
     // Bind value
     $this->db->bind(':username', $username);
 

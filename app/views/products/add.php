@@ -13,75 +13,71 @@
 
             <div class="row">
 
-              <div class="col-md-8">
-                <div class="md-form md-outline">
-                  <input type="text" id="productName" class="form-control <?php echo (!empty($data['product_name_err'])) ? 'is-invalid' : ''; ?>" name="product_name" value="<?php echo $data['product_name']; ?>">
-                  <label for="productName" class="form-label">Product Name</label>
-                  <span class="invalid-feedback"><?php echo $data['product_name_err']; ?></span>
-                </div>
+              <div class="col-md-8 mb-3">
+                <label class="form-control-label" for="productName">Product Name</label>
+                <input type="text" id="productName" class="form-control <?php echo (!empty($data['product_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['product_name']; ?>" name="product_name">
+                <span class="invalid-feedback"><?php echo $data['product_name_err']; ?></span>
               </div>
 
-              <div class="col-md-4">
-                <div class="md-form md-outline">
-                  <input type="text" id="productPrice" class="form-control <?php echo (!empty($data['product_price_err'])) ? 'is-invalid' : ''; ?>" name="product_price" value="<?php echo $data['product_price']; ?>">
-                  <label for="productPrice" class="form-label">Product Price</label>
-                  <span class="invalid-feedback"><?php echo $data['product_price_err']; ?></span>
-                </div>
+              <div class="col-md-4 mb-3">
+                <label for="productPrice">Product Price</label>
+                <input type="text" id="productPrice" class="form-control <?php echo (!empty($data['product_price_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['product_price']; ?>" name="product_price">
+                <span class="invalid-feedback"><?php echo $data['product_price_err']; ?></span>
               </div>
 
             </div>
 
             <div class="row">
 
-              <div class="col">
-                <div class="md-form md-outline">
-                  <textarea type="text" id="productDescription" class="md-textarea form-control <?php echo (!empty($data['product_description_err'])) ? 'is-invalid' : ''; ?>" rows="3" name="product_description"><?php echo $data['product_description']; ?></textarea>
-                  <label for="productDescription" class="form-label">Product Description</label>
-                  <span class="invalid-feedback"><?php echo $data['product_description_err']; ?></span>
-                </div>
+              <div class="col mb-3">
+                <label for="productDescription">Product Description</label>
+                <textarea class="form-control <?php echo (!empty($data['product_description_err'])) ? 'is-invalid' : ''; ?>" id="productDescription" rows="3" name="product_description"><?php echo $data['product_description']; ?></textarea>
+                <span class="invalid-feedback"><?php echo $data['product_description_err']; ?></span>
               </div>
 
             </div>
 
             <div class="row">
 
-              <div class="col">
-                <div class="md-form">
-                  <div class="file-field">
-                    <div class="btn btn-primary btn-sm float-left">
-                      <span>Choose file</span>
-                      <input type="file" name="image" class="<?php echo isset($data['product_image_err']) ? 'is-invalid' : '' ?>">
-                    </div>
-                    <div class="file-path-wrapper">
-                      <input class="file-path" type="text" placeholder="Product Image" id="file-path">
-                    </div>
+              <div class="col mb-3">
+
+                <label for="inputProductImage">Product Image</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputProductImage">Upload</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input <?php echo isset($data['product_image_err']) ? 'is-invalid' : '' ?>" id="inputProductImageFileGroup" aria-describedby="inputProductImage" name="image">
+                    <label class="custom-file-label" for="inputProductImageFileGroup">Choose file</label>
                   </div>
                 </div>
                 <small>
                   <?php echo isset($data['product_image_err']) ? '<div class="text-danger">' . $data['product_image_err'] . '</div>' : '' ?>
                 </small>
+
               </div>
 
             </div>
 
             <div class="row">
 
-              <div class="col">
-
-                <select class="mdb-select colorful-select dropdown-primary md-form" action="formProduct" name="category_id">
+              <div class="col mb-3">
+                <label for="productCategory">Product Category</label>
+                <select class="browser-default custom-select" action="formProduct" id="productCategory" name="category_id">
+                  <option selected>Choose product category</option>
                   <?php foreach ($data['categories'] as $category) : ?>
                     <option value="<?php echo $category->category_id; ?>"><?php echo $category->category_name; ?></option>
                   <?php endforeach; ?>
                 </select>
-                <label class="mdb-main-label">Product Category</label>
               </div>
 
             </div>
 
-            <div class="d-grid gap-2 d-md-block">
-              <input class="btn btn-success btn-rounded" type="submit" value="Add Product"></input>
-              <a href="<?php echo URLROOT; ?>/products" class="btn btn-danger btn-rounded" role="button">Cancel</a>
+            <div class="d-flex gap-2">
+              <button class="btn btn-success w-100" type="submit" value="Add Product">Add Product</button>
+              <a class="btn btn-danger w-100" href="<?php echo URLROOT; ?>/products" role="button">Cancel</a>
             </div>
+
           </form>
         </div>
       </div>

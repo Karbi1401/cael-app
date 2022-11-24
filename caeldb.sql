@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2022 at 09:17 AM
+-- Generation Time: Nov 25, 2022 at 12:31 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -24,13 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL,
+  `cart_price` varchar(255) NOT NULL,
+  `cart_quantity` varchar(255) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
-  `category_status` int(11) NOT NULL,
+  `category_status` int(11) NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -40,9 +55,8 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`category_id`, `category_name`, `category_status`, `user_id`, `created_at`) VALUES
-(4, 'Beef', 1, 1, '2022-11-20 08:23:09'),
-(5, 'Pork', 1, 1, '2022-11-20 08:23:22'),
-(6, 'Seafoods', 1, 1, '2022-11-20 08:23:29');
+(23, 'Beef', 0, 3, '2022-11-24 23:56:25'),
+(24, 'Chicken', 0, 3, '2022-11-24 23:59:21');
 
 -- --------------------------------------------------------
 
@@ -56,7 +70,7 @@ CREATE TABLE `product` (
   `product_price` varchar(255) NOT NULL,
   `product_description` text NOT NULL,
   `product_image` text NOT NULL,
-  `product_status` int(11) NOT NULL,
+  `product_status` int(11) NOT NULL DEFAULT 0,
   `category_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -66,7 +80,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_description`, `product_image`, `product_status`, `category_id`, `created_at`) VALUES
-(3, 'Beef and Mushroom', '150', 'Good for 5 people. Beef and Mushroom Braised Stew is a rich and flavorful beef stew dish. Loaded with fork-tender beef, mushrooms, and creamy gravy, it’s sure to be a party hit!', 'Beef and Mushroom.jpg', 1, 4, '2022-11-20 13:51:49');
+(4, 'Beef & Mushroom', '300', 'Good for 5 people. Beef and Mushroom Braised Stew is a rich and flavorful beef stew dish. Loaded with fork-tender beef, mushrooms, and creamy gravy, it’s sure to be a party hit!', 'Beef and Mushroom.jpg', 1, 23, '2022-11-25 00:09:45');
 
 -- --------------------------------------------------------
 
@@ -76,15 +90,16 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_d
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `user_name` varchar(255) NOT NULL,
+  `user_first_name` varchar(255) NOT NULL,
+  `user_last_name` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
-  `user_contact` varchar(255) NOT NULL,
-  `user_address` text NOT NULL,
-  `user_city` varchar(255) NOT NULL,
+  `user_contact` varchar(255) DEFAULT NULL,
+  `user_address` text DEFAULT NULL,
+  `user_city` varchar(255) DEFAULT NULL,
   `user_username` varchar(255) NOT NULL,
   `user_password` varchar(255) NOT NULL,
-  `user_role` varchar(255) NOT NULL,
-  `user_image` text NOT NULL,
+  `user_role` varchar(255) NOT NULL DEFAULT 'user',
+  `user_image` text NOT NULL DEFAULT 'default_avatar.png',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -92,12 +107,19 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_contact`, `user_address`, `user_city`, `user_username`, `user_password`, `user_role`, `user_image`, `created_at`) VALUES
-(1, 'Kurt Carvey Cadenas', 'kurtcarveycadenas1401@gmail.com', '09772880178', '#8 Belfast St. Vista Verde North Executive Village, Brgy. 167, Caloocan City', 'Caloocan City', 'krtcrvy', 'user123', 'admin', 'default_avatar.png', '2022-11-20 08:10:42');
+INSERT INTO `user` (`user_id`, `user_first_name`, `user_last_name`, `user_email`, `user_contact`, `user_address`, `user_city`, `user_username`, `user_password`, `user_role`, `user_image`, `created_at`) VALUES
+(3, 'Kurt Carvey', 'Cadenas', 'kurtcarveycadenas1401@gmail.com', NULL, NULL, NULL, 'krtcrvy', '$2y$10$E4dHFzW4LElasXnPJFHsFuXpQNl2AFfRGJS.89JSPSuWPOyx/KB5C', 'admin', 'default_avatar.png', '2022-11-24 21:20:36'),
+(4, 'Patrick Eugene', 'Arganza', 'banz@gmail.com', NULL, NULL, NULL, 'banz', '$2y$10$Rf/vlWjI5JRDcYktRa7sm.GFcLDNRJaJQunUOkKQK.wgWDgpXRAYG', 'user', 'default_avatar.png', '2022-11-24 22:20:41');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`);
 
 --
 -- Indexes for table `category`
@@ -125,19 +147,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
