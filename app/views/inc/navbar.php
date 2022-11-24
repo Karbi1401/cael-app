@@ -17,10 +17,10 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" href="<?php echo URLROOT; ?>/users/login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Signup</a>
+          <a class="nav-link" href="<?php echo URLROOT; ?>/users/signup">Signup</a>
         </li>
       </ul>
     </div>

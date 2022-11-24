@@ -14,6 +14,12 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/mdb.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/login_css/main.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/login_css/util.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/fonts/iconic/css/material-design-iconic-font.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
 </head>
 
 <body class="restaurant-lp">
