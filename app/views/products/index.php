@@ -2,7 +2,7 @@
 <?php require APPROOT . '/views/admins/inc/sidebar.php'; ?>
 <?php require APPROOT . '/views/admins/inc/navbar.php'; ?>
 
-<main>
+<main class="vh-100">
   <div class="container-fluid">
     <div class="col-md-12">
       <?php success('product_message'); ?>

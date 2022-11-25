@@ -93,9 +93,7 @@ class Product
 
   public function editProductImage($data)
   {
-    $this->db->query('UPDATE product 
-                      SET product_image = :product_image,             
-                      WHERE product_id = :product_id');
+    $this->db->query('UPDATE product SET product_image = :product_image WHERE product_id = :product_id');
 
     $this->db->bind(':product_image', $data['product_image']);
     $this->db->bind(':product_id', $data['id']);

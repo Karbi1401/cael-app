@@ -21,6 +21,7 @@ class Products extends Controller
   public function add()
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $categories = $this->categoryModel->getCategories();
       $data = [
         'product_name' => trim($_POST['product_name']),
         'product_price' => trim($_POST['product_price']),
@@ -31,7 +32,8 @@ class Products extends Controller
         'product_name_err' => '',
         'product_price_err' => '',
         'product_description_err' => '',
-        'product_image_err' => ''
+        'product_image_err' => '',
+        'categories' => $categories
       ];
 
       if (empty($data['product_name'])) {
@@ -184,13 +186,19 @@ class Products extends Controller
   public function editProductImage($id)
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $products = $this->productModel->getProductByID($id);
 
       $data = [
         'id' => $id,
+        'product' => $products->product_image,
         'product_image' => $_FILES['image']['name'],
         'product_image_temp' => $_FILES['image']['tmp_name'],
         'product_image_err' => ''
       ];
+
+      if (empty($data['product_image'])) {
+        $data['product_image_err'] = "Please select an image";
+      }
 
       if (empty($data['product_image_err'])) {
         $uploaddir = dirname(APPROOT) . '\public\img\\';
@@ -202,7 +210,7 @@ class Products extends Controller
           die('Something went wrong');
         }
       } else {
-        $this->view('products/edit', $data);
+        $this->view('products/edit_product_image', $data);
       }
 
       $this->view('products/edit_product_image', $data);
@@ -211,7 +219,8 @@ class Products extends Controller
 
       $data = [
         'id' => $id,
-        'product_image' => $products->product_image,
+        'product' => $products->product_image,
+        'product_image' => '',
         'product_image_err' => '',
       ];
 

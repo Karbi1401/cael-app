@@ -2,7 +2,7 @@
 <?php require APPROOT . '/views/admins/inc/sidebar.php'; ?>
 <?php require APPROOT . '/views/admins/inc/navbar.php'; ?>
 
-<main>
+<main class="vh-100">
   <div class="container-fluid">
     <div class="col-md-6 offset-md-3">
       <?php success('product_message'); ?>
@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col-md-12 mb-3">
               <div class="text-center">
-                <img src="<?php echo URLROOT; ?>/img/<?php echo $data['product_image']; ?>" class="rounded-circle z-depth-1 img-fluid" width="300px">
+                <img src="<?php echo URLROOT; ?>/img/<?php echo $data['product']; ?>" class="rounded-circle z-depth-1 img-fluid" width="300px">
               </div>
             </div>
 
@@ -21,15 +21,20 @@
               <form action="<?php echo URLROOT; ?>/products/editProductImage/<?php echo $data['id']; ?>" method="POST" enctype="multipart/form-data">
 
                 <label for="inputGroupFile01">Product Image</label>
-                <div class="input-group mb-3">
+                <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                   </div>
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="image">
+                    <input type="file" class="custom-file-input <?php echo isset($data['product_image_err']) ? 'is-invalid' : '' ?>" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="image">
                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                   </div>
                 </div>
+
+                <small>
+                  <?php echo isset($data['product_image_err']) ? '<div class="text-danger">' . $data['product_image_err'] . '</div>' : '' ?>
+                </small>
+
                 <div class="d-flex gap-2">
                   <button class="btn btn-success w-100" type="submit" value="Edit Product Image">Edit Product Image</button>
                   <a class="btn btn-danger w-100" href="<?php echo URLROOT; ?>/products" role="button">Cancel</a>
