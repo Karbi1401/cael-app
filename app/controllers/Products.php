@@ -125,6 +125,7 @@ class Products extends Controller
         'product_description' => trim($_POST['product_description']),
         'category_id' => $_POST['category_id'],
         'category_name' => $products->categoryName,
+        'categories' => $categories,
         'product_name_err' => '',
         'product_price_err' => '',
         'product_description_err' => '',
@@ -221,6 +222,7 @@ class Products extends Controller
         'id' => $id,
         'product' => $products->product_image,
         'product_image' => '',
+        'product_image_temp' => '',
         'product_image_err' => '',
       ];
 
