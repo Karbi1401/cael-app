@@ -33,7 +33,7 @@ class Users extends Controller
 
       // Validate First Name
       if (empty($data['first_name'])) {
-        $data['first_name_err'] = 'Please enter name';
+        $data['first_name_err'] = 'Please enter first name';
       } elseif (is_numeric($data['first_name'])) {
         $data['first_name_err'] = 'Name cannot contant any number';
       } elseif (!preg_match("/^[a-zA-Z\s]+$/", $data['first_name'])) {
@@ -42,7 +42,7 @@ class Users extends Controller
 
       // Validate Last Name
       if (empty($data['last_name'])) {
-        $data['last_name_err'] = 'Please enter name';
+        $data['last_name_err'] = 'Please enter last name';
       } elseif (is_numeric($data['last_name'])) {
         $data['last_name_err'] = 'Name cannot contant any number';
       } elseif (!preg_match("/^[a-zA-Z\s]+$/", $data['last_name'])) {
@@ -154,10 +154,8 @@ class Users extends Controller
       // Validate Password
       if (empty($data['password'])) {
         $data['password_err'] = 'Please enter password';
-      }
-
-      // Check for user/email
-      if ($this->userModel->findUserByUsername($data['username']) == false) {
+      } elseif ($this->userModel->findUserByUsername($data['username']) == false) {
+        // Check for user/email
         $data['username_err'] = 'No user found';
       }
 
