@@ -40,31 +40,9 @@
             <div class="row">
 
               <div class="col mb-3">
-
-                <label for="inputProductImage">Product Image</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputProductImage">Upload</span>
-                  </div>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input <?php echo isset($data['product_image_err']) ? 'is-invalid' : '' ?>" id="inputProductImageFileGroup" aria-describedby="inputProductImage" name="image">
-                    <label class="custom-file-label" for="inputProductImageFileGroup">Choose file</label>
-                  </div>
-                </div>
-                <small>
-                  <?php echo isset($data['product_image_err']) ? '<div class="text-danger">' . $data['product_image_err'] . '</div>' : '' ?>
-                </small>
-
-              </div>
-
-            </div>
-
-            <div class="row">
-
-              <div class="col mb-3">
                 <label for="productCategory">Product Category</label>
                 <select class="browser-default custom-select" action="formProduct" id="productCategory" name="category_id">
-                  <option value="<?php echo $data['category_id']; ?>" selected>Selected: <?php echo  $data['category_name']; ?></option>
+                  <option value="<?php echo $data['category_id']; ?>" selected>Selected: <?php echo $data['category_name']; ?></option>
                   <?php foreach ($data['categories'] as $category) : ?>
                     <option value="<?php echo $category->category_id; ?>"><?php echo $category->category_name; ?></option>
                   <?php endforeach; ?>

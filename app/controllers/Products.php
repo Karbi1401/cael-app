@@ -113,18 +113,19 @@ class Products extends Controller
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+      $products = $this->productModel->getProductByID($id);
+      $categories = $this->categoryModel->getCategories();
+
       $data = [
         'id' => $id,
         'product_name' => trim($_POST['product_name']),
         'product_price' => trim($_POST['product_price']),
         'product_description' => trim($_POST['product_description']),
-        'product_image' => $_FILES['image']['name'],
-        'product_image_temp' => $_FILES['image']['tmp_name'],
         'category_id' => $_POST['category_id'],
+        'category_name' => $products->categoryName,
         'product_name_err' => '',
         'product_price_err' => '',
         'product_description_err' => '',
-        'product_image_err' => '',
         'category_id_err' => ''
       ];
 
@@ -148,9 +149,7 @@ class Products extends Controller
         $data['product_image_err'] = 'You must choose a product image';
       }
 
-      if (empty($data['product_name_err']) && empty($data['product_price_err']) && empty($data['product_description_err']) && empty($data['product_image_err'])) {
-        $uploaddir = dirname(APPROOT) . '\public\img\\';
-        move_uploaded_file($data['product_image_temp'], $uploaddir . $data['product_image']);
+      if (empty($data['product_name_err']) && empty($data['product_price_err']) && empty($data['product_description_err'])) {
         if ($this->productModel->updateProduct($data)) {
           success('product_message', '<i class="fa-solid fa-check mr-2"></i>Product Successfuly Updated!');
           redirect('products');
@@ -169,18 +168,54 @@ class Products extends Controller
         'product_name' => $products->product_name,
         'product_price' => $products->product_price,
         'product_description' => $products->product_description,
-        'product_image' => $products->product_image,
         'category_id' => $products->category_id,
         'category_name' => $products->categoryName,
         'categories' => $categories,
         'product_name_err' => '',
         'product_price_err' => '',
         'product_description_err' => '',
-        'product_image_err' => '',
         'category_id_err' => ''
       ];
 
       $this->view('products/edit', $data);
+    }
+  }
+
+  public function editProductImage($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+      $data = [
+        'id' => $id,
+        'product_image' => $_FILES['image']['name'],
+        'product_image_temp' => $_FILES['image']['tmp_name'],
+        'product_image_err' => ''
+      ];
+
+      if (empty($data['product_image_err'])) {
+        $uploaddir = dirname(APPROOT) . '\public\img\\';
+        move_uploaded_file($data['product_image_temp'], $uploaddir . $data['product_image']);
+        if ($this->productModel->editProductImage($data)) {
+          success('product_message', '<i class="fa-solid fa-check mr-2"></i>Product Image Successfuly Updated!');
+          redirect('products');
+        } else {
+          die('Something went wrong');
+        }
+      } else {
+        $this->view('products/edit', $data);
+      }
+
+      $this->view('products/edit_product_image', $data);
+    } else {
+      $products = $this->productModel->getProductByID($id);
+
+      $data = [
+        'id' => $id,
+        'product_image' => $products->product_image,
+        'product_image_err' => '',
+      ];
+
+      $this->view('products/edit_product_image', $data);
     }
   }
 

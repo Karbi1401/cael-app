@@ -72,8 +72,7 @@ class Product
     $this->db->query('UPDATE product 
                       SET product_name = :product_name, 
                       product_price = :product_price,
-                      product_description = :product_description, 
-                      product_image = :product_image,             
+                      product_description = :product_description,             
                       category_id = :category_id 
                       WHERE product_id = :product_id');
 
@@ -81,11 +80,28 @@ class Product
     $this->db->bind(':product_name', $data['product_name']);
     $this->db->bind(':product_price', $data['product_price']);
     $this->db->bind(':product_description', $data['product_description']);
-    $this->db->bind(':product_image', $data['product_image']);
     $this->db->bind(':category_id', $data['category_id']);
     $this->db->bind(':product_id', $data['id']);
 
     // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function editProductImage($data)
+  {
+    $this->db->query('UPDATE product 
+                      SET product_image = :product_image,             
+                      WHERE product_id = :product_id');
+
+    $this->db->bind(':product_image', $data['product_image']);
+    $this->db->bind(':product_id', $data['id']);
+
+    $row = $this->db->single();
+
     if ($this->db->execute()) {
       return true;
     } else {
