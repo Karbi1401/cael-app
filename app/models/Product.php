@@ -25,13 +25,7 @@ class Product
 
   public function getProductByID($id)
   {
-    $this->db->query('SELECT *,
-                      category.category_name as categoryName
-                      FROM product
-                      INNER JOIN category
-                      ON product.category_id = category.category_id
-                      WHERE product_id = :id
-                      ORDER BY product.created_at ASC');
+    $this->db->query('SELECT * FROM product WHERE product_id = :id');
 
     $this->db->bind(':id', $id);
 
@@ -159,5 +153,33 @@ class Product
     } else {
       return false;
     }
+  }
+
+  public function getProductByStatus()
+  {
+    $this->db->query('SELECT * FROM product WHERE product_status = 1 ORDER BY created_at ASC');
+
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
+
+  public function getProductByCategory($id)
+  {
+    $this->db->query('SELECT *,
+                      product.product_id as productID,
+                      product.category_id as tblproductCategoryID,
+                      category.category_id as tblcategoryCategoryID
+                      FROM product
+                      INNER JOIN category
+                      ON product.category_id = category.category_id
+                      WHERE category.category_id = :id
+                      ORDER BY product.created_at ASC');
+
+    $this->db->bind(':id', $id);
+
+    $results = $this->db->resultSet();
+
+    return $results;
   }
 }

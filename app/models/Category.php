@@ -126,4 +126,13 @@ class Category
       return false;
     }
   }
+
+  public function getCategoryByStatus()
+  {
+    $this->db->query('SELECT * FROM category WHERE category_status = 1');
+
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
 }

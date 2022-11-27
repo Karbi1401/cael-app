@@ -6,7 +6,7 @@
           <strong>ABOUT RESTAURANT</strong>
         </h5>
 
-        <p>
+        <p class="w-responsive">
           Cael's Delivery is a family business that not just caters delicious foods, but lives with the perspective that nothing makes people closer together like pleasure and laughter.
         </p>
       </div>

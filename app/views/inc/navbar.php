@@ -9,29 +9,29 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto smooth-scroll">
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo URLROOT; ?>">Home</a>
+          <a class="nav-link" href="<?php echo URLROOT; ?>"><i class="fa-solid fa-house mr-2"></i>Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo URLROOT; ?>/pages/menu">Menu</a>
+          <a class="nav-link" href="<?php echo URLROOT; ?>/pages/menu"><i class="fa-solid fa-bars mr-2"></i>Menu</a>
         </li>
       </ul>
       <ul class="navbar-nav">
         <?php if (isset($_SESSION['user_id'])) : ?>
           <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
+            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping mr-2"></i>Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cart</a>
+            <a class="nav-link" href="#"><i class="fa-solid fa-user mr-2"></i>Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Logout</a>
+            <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a>
           </li>
         <?php else : ?>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo URLROOT; ?>/users/login">Login</a>
+            <a class="nav-link" href="<?php echo URLROOT; ?>/users/login"><i class="fa-solid fa-right-to-bracket mr-2"></i>Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo URLROOT; ?>/users/signup">Sign up</a>
+            <a class="nav-link" href="<?php echo URLROOT; ?>/users/signup"><i class="fa-solid fa-id-card mr-2"></i>Sign up</a>
           </li>
         <?php endif; ?>
       </ul>

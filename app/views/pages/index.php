@@ -36,9 +36,12 @@
 <main>
   <section class="mt-4 mb-5 pb-5">
     <div class="container">
-      <h1 class="text-center mb-5 mt-5 py-5 font-weight-bold wow fadeIn" data-wow-delay="0.2s">
-        You are our top priority!
-      </h1>
+      <div class="divider-new">
+        <h2 class="h2-responsive my-4 py-4 font-weight-bold wow fadeIn orange-text" data-wow-delay="0.2s">
+          You are our top priority!
+        </h2>
+      </div>
+
       <div class="row my-4 text-center">
         <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.4s">
           <div class="card shadow-2-strong h-100">
@@ -49,7 +52,7 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">Mission</h5>
-              <p class="card-text">
+              <p class="card-text w-responsive mx-auto">
                 Cael is dedicated in providing an excellent and
                 successful event service with creativity and originality
                 that leaves the best impression to everyone.
@@ -66,7 +69,7 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">Vision</h5>
-              <p class="card-text">
+              <p class="card-text w-responsive mx-auto">
                 Cael's vision is to be one of the most well-known event
                 organizing company that meets the highest quality of
                 service that exceeds customers expectations.
@@ -83,7 +86,7 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">Core</h5>
-              <p class="card-text">
+              <p class="card-text w-responsive mx-auto">
                 Cael has formed its foundation from good business
                 practices and strong core values of Customer Focus,
                 Speed with Excellence, Integrity, Spirit of Family and

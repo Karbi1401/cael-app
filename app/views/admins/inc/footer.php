@@ -1,4 +1,4 @@
-<footer class="page-footer pt-0 mt-5">
+<footer class="page-footer pt-0 mt-5 fixed-bottom">
 
   <div class="footer-copyright py-3 text-center">
     <div class="container-fluid">
