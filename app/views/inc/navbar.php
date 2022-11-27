@@ -18,10 +18,17 @@
       <ul class="navbar-nav">
         <?php if (isset($_SESSION['user_id'])) : ?>
           <li class="nav-item">
+<<<<<<< Updated upstream
             <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping mr-2"></i>Cart</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="fa-solid fa-user mr-2"></i>Profile</a>
+=======
+            <a class="nav-link" href="#"><i class="fa-solid fa-user mr-1"></i>Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping mr-1"></i>Cart</a>
+>>>>>>> Stashed changes
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a>
