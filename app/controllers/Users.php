@@ -4,6 +4,7 @@ class Users extends Controller
   public function __construct()
   {
     $this->userModel = $this->model('User');
+    $this->cartModel = $this->model('Cart');
   }
 
   public function signup()
@@ -11,9 +12,6 @@ class Users extends Controller
     // Check for POST
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Process form
-
-      // Sanitize POST data
-      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
       // Init data
       $data = [
@@ -135,9 +133,6 @@ class Users extends Controller
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Process form
 
-      // Sanitize POST data
-      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
       // Init data
       $data = [
         'username' => trim($_POST['username']),
@@ -198,17 +193,18 @@ class Users extends Controller
     $_SESSION['user_name'] = $user->user_name;
     $_SESSION['user_role'] = $user->user_role;
 
-    // $cartItems = 0;
-    // $carts = $this->cartModel->getCart($user->user_id);
-    // if ($carts) {
-    //   foreach ($carts as $cart) {
-    //     $cartItems = $cartItems + $cart->cart_quantity;
-    //     $_SESSION['user_cart'] = $cartItems;
-    //   }
-    // } else {
-    //   $cartItems = 0;
-    // }
-    // $_SESSION['user_cart'] = $cartItems;
+    $cartItems = 0;
+    $carts = $this->cartModel->getCart($user->user_id);
+    if ($carts) {
+      foreach ($carts as $cart) {
+        $cartItems = $cartItems + $cart->cart_quantity;
+        $_SESSION['user_cart'] = $cartItems;
+      }
+    } else {
+      $cartItems = 0;
+    }
+
+    $_SESSION['user_cart'] = $cartItems;
   }
 
   public function logout()

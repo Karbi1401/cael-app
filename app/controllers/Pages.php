@@ -5,6 +5,7 @@ class Pages extends Controller
   {
     $this->productModel = $this->model('Product');
     $this->categoryModel = $this->model('Category');
+    $this->cartModel = $this->model('Cart');
   }
 
   public function index()
@@ -14,15 +15,41 @@ class Pages extends Controller
 
   public function menu()
   {
-    $products = $this->productModel->getProductByStatus();
-    $categories = $this->categoryModel->getCategoryByStatus();
+    if (isset($_SESSION['user_id'])) {
+      $id = $_SESSION['user_id'];
+      $cartItems = 0;
+      $products = $this->productModel->getProductByStatus();
+      $categories = $this->categoryModel->getCategoryByStatus();
+      $carts = $this->cartModel->getCart($id);
 
-    $data = [
-      'categories' => $categories,
-      'products' => $products,
-    ];
+      if ($carts) {
+        foreach ($carts as $cart) {
+          $cartItems = $cartItems + $cart->cart_quantity;
+          $_SESSION['user_cart'] = $cartItems;
+        }
+      } else {
+        $cartItems = 0;
+      }
 
-    $this->view('pages/menu', $data);
+      $_SESSION['user_cart'] = $cartItems;
+
+      $data = [
+        'products' => $products,
+        'categories' => $categories
+      ];
+
+      $this->view('pages/menu', $data);
+    } else {
+      $products = $this->productModel->getProductByStatus();
+      $categories = $this->categoryModel->getCategoryByStatus();
+
+      $data = [
+        'categories' => $categories,
+        'products' => $products,
+      ];
+
+      $this->view('pages/menu', $data);
+    }
   }
 
   public function category($id)

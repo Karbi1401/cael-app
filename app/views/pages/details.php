@@ -28,10 +28,10 @@
             <section>
               <div class="row">
                 <div class="col-md-12 text-center text-md-left text-md-right">
-                  <button class="btn btn-orange btn-rounded">
+                  <a href="<?php echo URLROOT; ?>/carts/add/<?php echo $data['products']->product_id; ?>/<?php echo $data['products']->product_price; ?>" class="btn btn-orange btn-rounded" role="button">
                     <i class="fa-solid fa-cart-plus mr-2" aria-hidden="true"></i>
                     Add to cart
-                  </button>
+                  </a>
                 </div>
               </div>
             </section>

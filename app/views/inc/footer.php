@@ -45,6 +45,17 @@
 <script src="<?php echo URLROOT; ?>/frontend/js/mdb.min.js"></script>
 <script>
   new WOW().init();
+
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+  function deleteItem() {
+    var result = confirm("Are you sure you want to delete the item?");
+    if (result == false) {
+      event.preventDefault();
+    }
+  }
 </script>
 </body>
 
