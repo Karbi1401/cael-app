@@ -5,6 +5,7 @@ class Carts extends Controller
   {
     $this->cartModel = $this->model('Cart');
     $this->userModel = $this->model('User');
+    // $this->orderModel = $this->model('Order');
   }
 
   public function index()
@@ -103,7 +104,32 @@ class Carts extends Controller
   public function checkout()
   {
     if (Auth::userAuth()) {
-      $this->view('carts/checkout');
+
+      $id = $_SESSION['user_id'];
+
+      $carts = $this->cartModel->getCart($id);
+
+      $users = $this->userModel->getUserByID($id);
+
+      $data = [
+        'carts' => $carts,
+        'first_name' => $users->user_first_name,
+        'last_name' => $users->user_last_name,
+        'email' => $users->user_email,
+        'contact_number' => $users->user_contact,
+        'address' => $users->user_address,
+        'city' => $users->user_city,
+        'payment_method' => '',
+        'first_name_err' => '',
+        'last_name_err' => '',
+        'email_err' => '',
+        'contact_err' => '',
+        'address_err' => '',
+        'city_err' => '',
+        'payment_method_err' => ''
+      ];
+
+      $this->view('carts/checkout', $data);
     } elseif (Auth::adminAuth()) {
       redirect('admins');
     } else {

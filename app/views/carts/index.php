@@ -1,7 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
-<!-- Main Layout -->
 <main>
   <div class="container">
     <section class="section my-5 pb-5">
@@ -33,8 +32,6 @@
                     <th></th>
                   </tr>
                 </thead>
-                <!-- Table head -->
-                <!-- Table body -->
                 <tbody>
                   <?php
                   $total = 0;
