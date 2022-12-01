@@ -91,9 +91,9 @@
                     </td>
 
                     <td colspan="3" class="text-right">
-                      <button type="button" class="btn btn-orange btn-rounded">
+                      <a href="<?php echo URLROOT; ?>/carts/checkout" class="btn btn-orange btn-rounded" role="button">
                         Proceed Checkout<i class="fas fa-step-forward ml-2"></i>
-                      </button>
+                      </a>
                     </td>
                   </tr>
                 </tbody>

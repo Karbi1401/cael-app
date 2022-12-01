@@ -10,69 +10,85 @@ class Pages extends Controller
 
   public function index()
   {
-    $this->view('pages/index');
+    if (Auth::adminAuth()) {
+      redirect('admins/index');
+    } else {
+      $this->view('pages/index');
+    }
   }
 
   public function menu()
   {
-    if (isset($_SESSION['user_id'])) {
-      $id = $_SESSION['user_id'];
-      $cartItems = 0;
-      $products = $this->productModel->getProductByStatus();
-      $categories = $this->categoryModel->getCategoryByStatus();
-      $carts = $this->cartModel->getCart($id);
-
-      if ($carts) {
-        foreach ($carts as $cart) {
-          $cartItems = $cartItems + $cart->cart_quantity;
-          $_SESSION['user_cart'] = $cartItems;
-        }
-      } else {
-        $cartItems = 0;
-      }
-
-      $_SESSION['user_cart'] = $cartItems;
-
-      $data = [
-        'products' => $products,
-        'categories' => $categories
-      ];
-
-      $this->view('pages/menu', $data);
+    if (Auth::adminAuth()) {
+      redirect('admins/index');
     } else {
-      $products = $this->productModel->getProductByStatus();
-      $categories = $this->categoryModel->getCategoryByStatus();
+      if (isset($_SESSION['user_id'])) {
+        $id = $_SESSION['user_id'];
+        $cartItems = 0;
+        $products = $this->productModel->getProductByStatus();
+        $categories = $this->categoryModel->getCategoryByStatus();
+        $carts = $this->cartModel->getCart($id);
 
-      $data = [
-        'categories' => $categories,
-        'products' => $products,
-      ];
+        if ($carts) {
+          foreach ($carts as $cart) {
+            $cartItems = $cartItems + $cart->cart_quantity;
+            $_SESSION['user_cart'] = $cartItems;
+          }
+        } else {
+          $cartItems = 0;
+        }
 
-      $this->view('pages/menu', $data);
+        $_SESSION['user_cart'] = $cartItems;
+
+        $data = [
+          'products' => $products,
+          'categories' => $categories
+        ];
+
+        $this->view('pages/menu', $data);
+      } else {
+        $products = $this->productModel->getProductByStatus();
+        $categories = $this->categoryModel->getCategoryByStatus();
+
+        $data = [
+          'categories' => $categories,
+          'products' => $products,
+        ];
+
+        $this->view('pages/menu', $data);
+      }
     }
   }
 
   public function category($id)
   {
-    $categories = $this->categoryModel->getCategoryByStatus();
-    $products = $this->productModel->getProductByCategory($id);
+    if (Auth::adminAuth()) {
+      redirect('admins/index');
+    } else {
+      $categories = $this->categoryModel->getCategoryByStatus();
+      $products = $this->productModel->getProductByCategory($id);
 
-    $data = [
-      'categories' => $categories,
-      'products' => $products
-    ];
+      $data = [
+        'categories' => $categories,
+        'products' => $products
+      ];
 
-    $this->view('pages/category', $data);
+      $this->view('pages/category', $data);
+    }
   }
 
   public function details($id)
   {
-    $products = $this->productModel->getProductByID($id);
+    if (Auth::adminAuth()) {
+      redirect('admins/index');
+    } else {
+      $products = $this->productModel->getProductByID($id);
 
-    $data = [
-      'products' => $products
-    ];
+      $data = [
+        'products' => $products
+      ];
 
-    $this->view('pages/details', $data);
+      $this->view('pages/details', $data);
+    }
   }
 }

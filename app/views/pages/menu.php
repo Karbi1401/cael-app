@@ -44,7 +44,7 @@
                       <div class="row mb-0">
                         <span class="float-left"><strong>&#8369;<?php echo $product->product_price; ?></strong></span>
                         <span class="float-right">
-                          <a href="<?php echo URLROOT; ?>/carts/add/<?php echo $product->product_id; ?>/<?php echo $product->product_price; ?>" data-toggle="tooltip" data-placement="top" title="Add to Cart"><i class="fa-solid fa-cart-shopping ml-3 span-orange"></i></a>
+                          <a href="<?php echo URLROOT; ?>/carts/add/<?php echo $product->product_id; ?>/<?php echo $product->product_price; ?>" data-toggle="tooltip" data-placement="top" title="Add to Cart"><i class="fa-solid fa-cart-plus ml-3 span-orange"></i></a>
                         </span>
                       </div>
                     </div>

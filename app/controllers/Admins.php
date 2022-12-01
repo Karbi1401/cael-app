@@ -8,6 +8,10 @@ class Admins extends Controller
 
   public function index()
   {
-    $this->view('admins/index');
+    if (Auth::adminAuth()) {
+      $this->view('admins/index');
+    } else {
+      redirect('pages');
+    }
   }
 }

@@ -43,6 +43,7 @@
 <script src="<?php echo URLROOT; ?>/frontend/js/popper.min.js"></script>
 <script src="<?php echo URLROOT; ?>/frontend/js/bootstrap.min.js"></script>
 <script src="<?php echo URLROOT; ?>/frontend/js/mdb.min.js"></script>
+<script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script>
 <script>
   new WOW().init();
 
