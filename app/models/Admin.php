@@ -9,3 +9,5 @@ class Admin
     $this->db = new Database;
   }
 }
+
+

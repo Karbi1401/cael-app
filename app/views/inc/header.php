@@ -16,4 +16,5 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/frontend/css/style.css">
 </head>
 
+
 <body class="restaurant-lp">

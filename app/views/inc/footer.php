@@ -1,7 +1,7 @@
 <footer class="page-footer text-center text-md-left pt-4">
   <div class="container mb-4">
     <div class="row">
-      <div class="col-lg-6 pt-1 pb-3 wow fadeIn" data-wow-delay="0.3s">
+      <div class="col-lg-6 pt-1 pb-3 wow bounceInLeft" data-wow-delay="0.3s">
         <h5 class="title mb-4">
           <strong>ABOUT RESTAURANT</strong>
         </h5>
@@ -13,7 +13,7 @@
 
       <hr class="w-100 clearfix d-md-none" />
 
-      <div class="col-lg-6 pt-1 pb-1 col-md-6 wow fadeIn" data-wow-delay="0.3s">
+      <div class="col-lg-6 pt-1 pb-1 col-md-6 wow bounceInRight" data-wow-delay="0.3s">
         <h5 class="text-uppercase mb-4">
           <strong>Contact Us</strong>
         </h5>
@@ -44,6 +44,7 @@
 <script src="<?php echo URLROOT; ?>/frontend/js/bootstrap.min.js"></script>
 <script src="<?php echo URLROOT; ?>/frontend/js/mdb.min.js"></script>
 <script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script>
   new WOW().init();
 
@@ -57,7 +58,9 @@
       event.preventDefault();
     }
   }
+
 </script>
+
 </body>
 
 </html>

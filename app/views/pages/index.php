@@ -1,6 +1,8 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
+
+
 <div id="home" class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('<?php echo URLROOT; ?>/img/bgparallax.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
   <div class="mask rgba-black-slight">
     <div class="container h-100 d-flex justify-content-center align-items-center">
@@ -8,12 +10,12 @@
         <div class="container h-100 d-flex justify-content-center align-items-center">
           <div class="row smooth-scroll">
             <div class="col-md-12 text-center">
-              <div class="container wow fadeInDown" data-wow-delay="0.2s">
+              <div class="container wow fadeIn" data-wow-delay="0.2s">
                 <img class="d-block mx-auto mb-4" src="<?php echo URLROOT; ?>/img/logo.png" alt="Cael Logo" width="100">
                 <h2 class="display-3 white-text font-weight-bold mb-2 mt-5 mt-xl-2">
-                  <span class="span-orange">Cael's</span> Delivery
+                  <span  class="span-orange">Cael's</span> Delivery
                 </h2>
-                <hr class="hr-light" />
+                <hr class="hr-light"/>
                 <h4 class="subtext-header white-text mt-2 mb-3">
                   Cael's Delivery is a family business that not just caters delicious foods,
                 </h4>
@@ -37,13 +39,13 @@
   <section class="mt-4 mb-5 pb-5">
     <div class="container">
       <div class="divider-new">
-        <h2 class="h2-responsive my-4 py-4 font-weight-bold wow fadeIn orange-text" data-wow-delay="0.2s">
+        <h2 class="h2-responsive my-4 py-4 font-weight-bold wow fadeInDown orange-text" data-wow-delay="0.2s">
           You are our top priority!
         </h2>
       </div>
 
       <div class="row my-4 text-center">
-        <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.4s">
+        <div class="col-md-4 mb-4 wow fadeInLeft" data-wow-delay="0.4s">
           <div class="card shadow-2-strong h-100">
             <div class="d-flex justify-content-center" style="margin-top: -43px">
               <div class="p-4 rounded-circle shadow-5-strong d-inline-block" style="background: #e67e22">
@@ -60,7 +62,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.4s">
+        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.7s">
           <div class="card shadow-2-strong h-100">
             <div class="d-flex justify-content-center" style="margin-top: -43px">
               <div class="p-4 rounded-circle shadow-5-strong d-inline-block" style="background: #e67e22">
@@ -77,7 +79,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.4s">
+        <div class="col-md-4 mb-4 wow fadeInRight" data-wow-delay="1s">
           <div class="card shadow-2-strong h-100">
             <div class="d-flex justify-content-center" style="margin-top: -43px">
               <div class="p-4 rounded-circle shadow-5-strong d-inline-block" style="background: #e67e22">
@@ -103,7 +105,7 @@
           background-image: url('<?php echo URLROOT; ?>/img/streak.jpg');
         ">
     <div class="flex-center mask rgba-black-strong">
-      <div class="text-center white-text">
+      <div class="text-center white-text wow fadeIn"  data-wow-delay="0.5s">
         <h2 class="h2-responsive mb-5">
           "Food for the body is not enough. There must be food for the soul."
         </h2>
@@ -112,5 +114,6 @@
     </div>
   </section>
 </main>
+
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>

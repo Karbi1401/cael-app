@@ -7,7 +7,7 @@
         ">
     <div class="flex-center mask rgba-black-strong">
       <div class="text-center white-text">
-        <h1 class="display-4">Menu</h1>
+        <h1 class="display-4 wow fadeInUp" data-wow-delay = "0.5s">Menu</h1>
       </div>
     </div>
   </section>
@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-lg-3">
         <div class="row">
-          <div class="col-md-6 col-lg-12 mb-5">
+          <div class="col-md-6 col-lg-12 mb-5 wow fadeInLeft" data-wow-delay = "0.8s">
             <h5 class="font-weight-bold span-orange">Categories</h5>
             <hr>
             <?php foreach ($data['categories'] as $category) : ?>
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div class="col-lg-9">
+      <div class="col-lg-9 wow fadeInRight" data-wow-delay = "1.1s">
         <section>
           <div class="row mb-3">
             <?php foreach ($data['products'] as $product) : ?>

@@ -49,6 +49,8 @@ class Core
   }
 
   // Construct URL From $_GET['url']
+
+  
   public function getUrl()
   {
     if (isset($_GET['url'])) {
