@@ -24,12 +24,20 @@ class Users extends Controller
           'username' => trim($_POST['username']),
           'password' => trim($_POST['password']),
           'confirm_password' => trim($_POST['confirm_password']),
+          'email' => trim($_POST['email']),
+          'contact_number' => trim($_POST['contact_number']),
+          'address' => trim($_POST['address']),
+          'city' => trim($_POST['city']),
           'first_name_err' => '',
           'last_name_err' => '',
           'email_err' => '',
           'username_err' => '',
           'password_err' => '',
-          'confirm_password_err' => ''
+          'confirm_password_err' => '',
+          'email_err' => '',
+          'contact_number_err' => '',
+          'address_err' => '',
+          'city_err' => ''
         ];
 
         // Validate First Name
@@ -48,18 +56,6 @@ class Users extends Controller
           $data['last_name_err'] = 'Name cannot contant any number';
         } elseif (!preg_match("/^[a-zA-Z\s]+$/", $data['last_name'])) {
           $data['last_name_err'] = 'Name must only contain letters';
-        }
-
-        // Validate Email
-        if (empty($data['email'])) {
-          $data['email_err'] = 'Please enter email';
-        } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-          $data['email_err'] = 'Enter valid email.';
-        } else {
-          // Check email
-          if ($this->userModel->findUserByEmail($data['email'])) {
-            $data['email_err'] = 'Email is already taken';
-          }
         }
 
         // Validate Username
@@ -90,8 +86,46 @@ class Users extends Controller
           }
         }
 
+        // Validate Email
+        if (empty($data['email'])) {
+          $data['email_err'] = 'Please enter email';
+        } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+          $data['email_err'] = 'Enter valid email.';
+        } else {
+          // Check email
+          if ($this->userModel->findUserByEmail($data['email'])) {
+            $data['email_err'] = 'Email is already taken';
+          }
+        }
+
+        // Validate Contact Number
+        if (empty($data['contact_number'])) {
+          $data['contact_number_err'] = 'Please enter contact number';
+        } elseif (strlen($data['contact_number']) < 11) {
+          $data['contact_number_err'] = 'Contact must not be less than 11 characters.';
+        } else {
+          // Check input if the input is a number
+          if (!is_numeric($data['contact_number'])) {
+            $data['contact_number_err'] = 'Invalid contact number';
+          }
+        }
+
+        // Validate Address
+        if (empty($data['address'])) {
+          $data['address_err'] = 'Please enter address';
+        }
+
+        // Validate City
+        if (empty($data['city'])) {
+          $data['city_err'] = 'Please enter city';
+        } elseif (is_numeric($data['city'])) {
+          $data['city_err'] = 'Input for city must not have any numeric value';
+        } elseif (!preg_match("/^[a-zA-Z\s]+$/", $data['city'])) {
+          $data['city_err'] = 'City must only contain letters';
+        }
+
         // Make sure errors are empty
-        if (empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['email_err']) && empty($data['username_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+        if (empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['username_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['email_err']) && empty($data['contact_number_err']) && empty($data['address_err']) && empty($data['city_err'])) {
           // Validated
 
           // Hash Password
@@ -117,12 +151,20 @@ class Users extends Controller
           'email' => '',
           'password' => '',
           'confirm_password' => '',
+          'email' => '',
+          'contact_number' => '',
+          'address' => '',
+          'city' => '',
           'first_name_err' => '',
           'last_name_err' => '',
           'email_err' => '',
           'username_err' => '',
           'password_err' => '',
-          'confirm_password_err' => ''
+          'confirm_password_err' => '',
+          'email_err' => '',
+          'contact_number_err' => '',
+          'address_err' => '',
+          'city_err' => ''
         ];
 
         // Load view
