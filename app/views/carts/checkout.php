@@ -9,25 +9,46 @@
       <div class="col-md-8 mb-4">
         <div class="card">
           <div class="card-body">
-            <h4 class="h4-responsive mb-3 orange-text">User Information</h4>
+            <h4 class="h4-responsive mb-3 orange-text">Shipping Information</h4>
+
             <div class="row">
+
               <div class="col-md-6 mb-3">
-                <label for="exampleForm2" class="disabled">First Name</label>
-                <input type="text" id="exampleForm2" class="form-control" disabled>
+                <label for="exampleForm2">First Name</label>
+                <input type="text" id="exampleForm2" class="form-control">
               </div>
 
               <div class="col-md-6 mb-3">
-                <label for="exampleForm2" class="disabled">Last Name</label>
-                <input type="text" id="exampleForm2" class="form-control" disabled>
+                <label for="exampleForm2">Last Name</label>
+                <input type="text" id="exampleForm2" class="form-control">
               </div>
 
-              <div class="col mb-3">
-                <label for="exampleForm2" class="disabled">Email</label>
-                <input type="email" id="exampleForm2" class="form-control" disabled>
+              <div class="col-md-12 mb-3">
+                <label for="exampleForm2">Email</label>
+                <input type="email" id="exampleForm2" class="form-control">
+              </div>
+
+              <div class="col-md-12 mb-3">
+                <label for="exampleForm2">Contact Number</label>
+                <input type="text" id="exampleForm2" class="form-control">
+              </div>
+
+              <div class="col-md-12 mb-3">
+                <label for="exampleForm2">Address</label>
+                <input type="text" id="exampleForm2" class="form-control">
+              </div>
+
+              <div class="col-md-12 mb-3">
+                <label for="exampleForm2">City</label>
+                <input type="text" id="exampleForm2" class="form-control">
+              </div>
+
+              <div class="col-md-12 pt-1 mb-3">
+                <button class="btn btn-orange btn-block" type="submit" value="Signup">Sign up</button>
               </div>
 
             </div>
-            <!--Grid row-->
+
           </div>
 
         </div>

@@ -14,14 +14,31 @@ class User
   {
     // Create query
     $this->db->query('INSERT INTO user
-                      (user_first_name, user_last_name, user_email, user_username, user_password) 
+                      (user_first_name, 
+                      user_last_name, 
+                      user_email, 
+                      user_contact,
+                      user_address,
+                      user_city,
+                      user_username, 
+                      user_password) 
                       VALUES 
-                      (:first_name, :last_name, :email, :username, :password)');
+                      (:first_name, 
+                      :last_name, 
+                      :email, 
+                      :contact,
+                      :address,
+                      :city,
+                      :username, 
+                      :password)');
 
     // Bind values
     $this->db->bind(':first_name', $data['first_name']);
     $this->db->bind(':last_name', $data['last_name']);
     $this->db->bind(':email', $data['email']);
+    $this->db->bind(':contact', $data['contact_number']);
+    $this->db->bind(':address', $data['address']);
+    $this->db->bind(':city', $data['city']);
     $this->db->bind(':username', $data['username']);
     $this->db->bind(':password', $data['password']);
 
