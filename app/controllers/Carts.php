@@ -104,32 +104,123 @@ class Carts extends Controller
   public function checkout()
   {
     if (Auth::userAuth()) {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Init Data
+        $data = [
+          'first_name' => trim($_POST['first_name']),
+          'last_name' => trim($_POST['last_name']),
+          'email' => trim($_POST['email']),
+          'contact' => trim($_POST['contact']),
+          'address' => trim($_POST['address']),
+          'city' => trim($_POST['city']),
+          'payment_method' => trim($_POST['payment_method']),
+          'total' => $_POST['total'],
+          'qty' => $_POST['qty'],
+          'order_schedule' => $_POST['order_schedule'],
+          'first_name_err' => '',
+          'last_name_err' => '',
+          'email_err' => '',
+          'contact_err' => '',
+          'address_err' => '',
+          'city_err' => '',
+          'payment_method_err' => '',
+          'order_schedule_err' => ''
+        ];
 
-      $id = $_SESSION['user_id'];
+        // Validate First Name
+        if (empty($data['first_name'])) {
+          $data['first_name_err'] = 'Please enter first name';
+        } elseif (is_numeric($data['first_name'])) {
+          $data['first_name_err'] = 'Name cannot contant any number';
+        } elseif (!preg_match("/^[a-zA-Z\s]+$/", $data['first_name'])) {
+          $data['first_name_err'] = 'Name must only contain letters';
+        }
 
-      $carts = $this->cartModel->getCart($id);
+        // Validate Last Name
+        if (empty($data['last_name'])) {
+          $data['last_name_err'] = 'Please enter last name';
+        } elseif (is_numeric($data['last_name'])) {
+          $data['last_name_err'] = 'Name cannot contant any number';
+        } elseif (!preg_match("/^[a-zA-Z\s]+$/", $data['last_name'])) {
+          $data['last_name_err'] = 'Name must only contain letters';
+        }
 
-      $users = $this->userModel->getUserByID($id);
+        // Validate Email
+        if (empty($data['email'])) {
+          $data['email_err'] = 'Email must have a value.';
+        } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+          $data['email_err'] = 'Enter valid email.';
+        }
 
-      $data = [
-        'carts' => $carts,
-        'first_name' => $users->user_first_name,
-        'last_name' => $users->user_last_name,
-        'email' => $users->user_email,
-        'contact_number' => $users->user_contact,
-        'address' => $users->user_address,
-        'city' => $users->user_city,
-        'payment_method' => '',
-        'first_name_err' => '',
-        'last_name_err' => '',
-        'email_err' => '',
-        'contact_err' => '',
-        'address_err' => '',
-        'city_err' => '',
-        'payment_method_err' => ''
-      ];
+        // Validate Contact Number
+        if (empty($data['contact_number'])) {
+          $data['contact_number_err'] = 'Please enter contact number';
+        } elseif (strlen($data['contact_number']) < 11) {
+          $data['contact_number_err'] = 'Contact must not be less than 11 characters.';
+        } else {
+          // Check input if the input is a number
+          if (!is_numeric($data['contact_number'])) {
+            $data['contact_number_err'] = 'Invalid contact number';
+          }
+        }
 
-      $this->view('carts/checkout', $data);
+        // Validate Address
+        if (empty($data['address'])) {
+          $data['address_err'] = 'Please enter address';
+        }
+
+        // Validate City
+        if (empty($data['city'])) {
+          $data['city_err'] = 'Please enter city';
+        } elseif (is_numeric($data['city'])) {
+          $data['city_err'] = 'Input for city must not have any numeric value';
+        } elseif (!preg_match("/^[a-zA-Z\s]+$/", $data['city'])) {
+          $data['city_err'] = 'City must only contain letters';
+        }
+
+        // Validate Payment Method
+        if (empty($_POST['payment_method'])) {
+          $data['payment_method_err'] = 'You must choose payment method';
+        }
+
+        // Validate Payment Method
+        if (empty($_POST['order_schedule'])) {
+          $data['order_schedule_err'] = 'Please enter schedule of the order';
+        }
+
+        if (empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['email_err']) && empty($data['contact_err']) && empty($data['address_err']) && empty($data['city_err']) && empty($data['payment_method_err']) && empty($data['order_schedule_err'])) {
+        } else {
+          $this->view('carts/checkout', $data);
+        }
+      } else {
+        $id = $_SESSION['user_id'];
+
+        $carts = $this->cartModel->getCart($id);
+
+        $users = $this->userModel->getUserByID($id);
+
+        // Init Data
+        $data = [
+          'carts' => $carts,
+          'first_name' => $users->user_first_name,
+          'last_name' => $users->user_last_name,
+          'email' => $users->user_email,
+          'contact_number' => $users->user_contact,
+          'address' => $users->user_address,
+          'city' => $users->user_city,
+          'payment_method' => '',
+          'first_name_err' => '',
+          'last_name_err' => '',
+          'email_err' => '',
+          'contact_err' => '',
+          'address_err' => '',
+          'city_err' => '',
+          'payment_method_err' => '',
+          'order_schedule_err' => ''
+        ];
+
+        $this->view('carts/checkout', $data);
+      }
     } elseif (Auth::adminAuth()) {
       redirect('admins');
     } else {

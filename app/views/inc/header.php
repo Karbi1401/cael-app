@@ -10,10 +10,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo URLROOT; ?>/img/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="<?php echo URLROOT; ?>/img/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="<?php echo URLROOT; ?>/img/favicon_io/site.webmanifest">
-  <script src="https://kit.fontawesome.com/45433fcb60.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/frontend/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/frontend/css/mdb.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/frontend/css/style.css">
+  <script src="https://kit.fontawesome.com/45433fcb60.js" crossorigin="anonymous"></script>
 </head>
 
 
