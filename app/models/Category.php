@@ -11,17 +11,7 @@ class Category
 
   public function getCategories()
   {
-    $this->db->query("SELECT *,
-											category.category_id as catID,
-											category.category_name as categoryName,
-											user.user_id as userID,
-											category.category_status as categoryStatus,
-											category.created_at as categoryCreated
-											FROM category
-											INNER JOIN user
-											ON category.user_id = user.user_id
-											ORDER BY category.created_at ASC
-											");
+    $this->db->query("SELECT * FROM category");
 
     $results = $this->db->resultSet();
 

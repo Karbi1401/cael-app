@@ -26,7 +26,7 @@
                   <tr>
                     <td><?php echo $category->category_id; ?></td>
                     <td><?php echo $category->category_name; ?></td>
-                    <td><?php echo $category->categoryCreated; ?></td>
+                    <td><?php echo $category->created_at; ?></td>
                     <td>
                       <?php if ($category->category_status == 1) : ?>
                         <a class="btn btn-success btn-rounded btn-sm" href="<?php echo URLROOT; ?>/categories/changeCategoryStatusInactive/<?php echo $category->category_id; ?>" role="button">
