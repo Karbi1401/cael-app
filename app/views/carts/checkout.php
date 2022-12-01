@@ -10,7 +10,9 @@
         <div class="card">
           <div class="card-body">
             <h4 class="h4-responsive mb-3 orange-text">Shipping Information</h4>
+
             <div class="row">
+
               <div class="col-md-6 mb-3">
                 <label for="exampleForm2">First Name</label>
                 <input type="text" id="exampleForm2" class="form-control">
