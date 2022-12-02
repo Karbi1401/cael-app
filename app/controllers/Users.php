@@ -270,4 +270,19 @@ class Users extends Controller
     session_destroy();
     redirect('users/login');
   }
+
+  public function profile($user_id)
+  {
+    if ($_SESSION['user_id'] == $user_id) {
+      $users = $this->userModel->getUserByID($user_id);
+
+      $data = [
+        'users' => $users,
+      ];
+
+      $this->view('users/profile', $data);
+    } else {
+      redirect('pages');
+    }
+  }
 }

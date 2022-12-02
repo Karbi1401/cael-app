@@ -22,7 +22,7 @@
               <i class="fa-solid fa-cart-shopping mr-2"></i>Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa-solid fa-user mr-2"></i>Profile</a>
+            <a class="nav-link" href="<?php echo URLROOT; ?>/users/profile/<?php echo $_SESSION['user_id']; ?>"><i class="fa-solid fa-user mr-2"></i>Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a>
