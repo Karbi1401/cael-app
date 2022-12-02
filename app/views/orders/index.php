@@ -52,7 +52,15 @@
                       }
                       ?>
                     </td>
-                    <td></td>
+                    <td>
+                      <div class="d-flex justify-content-between">
+                        <a href="<?php echo URLROOT; ?>/products/editProductImage/<?php echo $order->order_id; ?>"><i class="fa-solid fa-info blue-text" data-toggle="tooltip" data-placement="top" title="View Order Details"></i>
+                        </a>
+                        <a href="<?php echo URLROOT; ?>/products/edit/<?php echo $order->order_id; ?>"><i class="fa-solid fa-check green-text" data-toggle="tooltip" data-placement="top" title="Update Product"></i>
+                        </a>
+                        <a onclick="deleteProduct()" href="<?php echo URLROOT; ?>/products/delete/<?php echo $order->order_id; ?>"><i class="fa-solid fa-x red-text" data-toggle="tooltip" data-placement="top" title="Delete Product"></i></a>
+                      </div>
+                    </td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>

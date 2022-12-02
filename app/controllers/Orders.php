@@ -9,7 +9,7 @@ class Orders extends Controller
 
   public function index()
   {
-    $orders = $this->orderModel->getAllOrders();
+    $orders = $this->orderModel->getAllPendingOrders();
 
     $data = [
       'orders' => $orders

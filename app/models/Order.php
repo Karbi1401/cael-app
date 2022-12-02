@@ -133,9 +133,9 @@ class Order
     }
   }
 
-  public function getAllOrders()
+  public function getAllPendingOrders()
   {
-    $this->db->query("SELECT *,
+    $this->db->query("SELECT *, 
                       orders.order_id as orderID, 
                       users.user_id as userID, 
                       shippings.shipping_id as shippingID, 
@@ -148,11 +148,17 @@ class Order
                       INNER JOIN shippings 
                       ON orders.shipping_id = shippings.shipping_id 
                       INNER JOIN payments 
-                      ON orders.payment_id = payments.payment_id
+                      ON orders.payment_id = payments.payment_id 
+                      AND orders.order_status = 0
+                      AND payments.payment_status = 0
                       ORDER BY orders.created_at ASC;");
 
-    $results = $this->db->resultSet();
+    $orders = $this->db->resultSet();
 
-    return $results;
+    if ($orders) {
+      return $orders;
+    } else {
+      return false;
+    }
   }
 }

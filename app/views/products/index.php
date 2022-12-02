@@ -48,7 +48,7 @@
                       <?php endif; ?>
                     </td>
                     <td>
-                      <div class="d-flex justify-content-around">
+                      <div class="d-flex justify-content-between">
                         <a href="<?php echo URLROOT; ?>/products/editProductImage/<?php echo $product->product_id; ?>"><i class="fa-solid fa-image teal-text" data-toggle="tooltip" data-placement="top" title="Update Product Image"></i>
                         </a>
                         <a href="<?php echo URLROOT; ?>/products/edit/<?php echo $product->product_id; ?>"><i class="fa-solid fa-pen-to-square teal-text" data-toggle="tooltip" data-placement="top" title="Update Product"></i>
