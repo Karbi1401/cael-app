@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col-md-12 mb-3">
               <div class="text-center">
-                <img src="<?php echo URLROOT; ?>/img/<?php echo $data['product']; ?>" class="rounded-circle z-depth-1 img-fluid" width="300px">
+                <img src="<?php echo URLROOT; ?>/img/<?php echo $data['product']; ?>" class="rounded-circle z-depth-1 img-fluid" width="150px">
               </div>
             </div>
 
@@ -20,8 +20,7 @@
 
               <form action="<?php echo URLROOT; ?>/products/editProductImage/<?php echo $data['id']; ?>" method="POST" enctype="multipart/form-data">
 
-                <label for="inputGroupFile01">Product Image</label>
-                <div class="input-group">
+                <div class="input-group p-2">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                   </div>

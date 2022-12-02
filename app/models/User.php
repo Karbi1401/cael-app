@@ -100,6 +100,40 @@ class User
     }
   }
 
+  public function findUserByUsernameAndID($username, $user_id)
+  {
+    $this->db->query('SELECT * FROM users WHERE user_username = :username AND user_id = :user_id');
+    // Bind value
+    $this->db->bind(':username', $username);
+    $this->db->bind(':user_id', $user_id);
+
+    $row = $this->db->single();
+
+    // Check row
+    if ($this->db->rowCount() > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function findUserByEmailAndID($email, $user_id)
+  {
+    $this->db->query('SELECT * FROM users WHERE user_email = :email AND user_id = :user_id');
+    // Bind value
+    $this->db->bind(':email', $email);
+    $this->db->bind(':user_id', $user_id);
+
+    $row = $this->db->single();
+
+    // Check row
+    if ($this->db->rowCount() > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // Get user by ID
   public function getUserByID($id)
   {
@@ -110,5 +144,52 @@ class User
     $row = $this->db->single();
 
     return $row;
+  }
+
+  public function avatar($user_id, $user_image)
+  {
+    $this->db->query("UPDATE users SET user_image = :user_image
+                      WHERE user_id = :user_id");
+
+    $this->db->bind(':user_image', $user_image);
+    $this->db->bind(':user_id', $user_id);
+
+    $this->db->execute();
+
+    // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function editUser($data)
+  {
+    $this->db->query("UPDATE users 
+                      SET user_username = :user_username,
+                      user_first_name = :user_first_name,
+                      user_last_name = :user_last_name,
+                      user_email = :user_email,
+                      user_contact = :user_contact,
+                      user_address = :user_address,
+                      user_city = :user_city
+                      WHERE user_id = :user_id");
+
+    $this->db->bind(':user_id', $data['user_id']);
+    $this->db->bind(':user_username', $data['username']);
+    $this->db->bind(':user_first_name', $data['first_name']);
+    $this->db->bind(':user_last_name', $data['last_name']);
+    $this->db->bind(':user_email', $data['email']);
+    $this->db->bind(':user_contact', $data['contact_number']);
+    $this->db->bind(':user_address', $data['address']);
+    $this->db->bind(':user_city', $data['city']);
+
+    // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
