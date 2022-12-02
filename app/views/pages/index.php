@@ -125,8 +125,8 @@
       <!--/Secion heading-->
 
       <!--Section description-->
-      <p class="text-center grey-text w-responsive mx-auto mb-5 wow zoomIn" data-wow-delay="0.5s">The service is excellent. 
-        I enjoy their customer service and the workers. are wonderful and courteous.
+      <p class="text-center grey-text w-responsive mx-auto mb-5 wow zoomIn" data-wow-delay="0.5s">Here is what our clients had to say about our fantastic services on Cael's delivery. 
+        Feel free to explore the responses of our company's clients.Here is what our clients had to say about our fantastic services on Cael's delivery. Feel free to explore the responses of our company's clients.
       </p>
 
       <!--First row-->
@@ -196,11 +196,10 @@
             <!--Content-->
             <h4 class="font-weight-bold">Tom Smith</h4>
             <p>
-              <i class="fas fa-quote-left"></i> At vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium
-              voluptatum deleniti atque corrupti.
+              <i class="fas fa-quote-left"></i> The service is excellent. I enjoy their customer service and the workers. are wonderful and courteous.
             </p>
 
+            <br>
             <!--Review-->
             <div class="orange-text">
               <i class="fas fa-star"> </i>
