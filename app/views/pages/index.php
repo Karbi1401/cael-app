@@ -125,9 +125,8 @@
       <!--/Secion heading-->
 
       <!--Section description-->
-      <p class="text-center grey-text w-responsive mx-auto mb-5 wow zoomIn" data-wow-delay="0.5s">Lorem ipsum dolor
-        sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate
-        esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.
+      <p class="text-center grey-text w-responsive mx-auto mb-5 wow zoomIn" data-wow-delay="0.5s">The service is excellent. 
+        I enjoy their customer service and the workers. are wonderful and courteous.
       </p>
 
       <!--First row-->
@@ -145,9 +144,7 @@
             <!--Content-->
             <h4 class="font-weight-bold">Anna Deynah</h4>
             <p>
-              <i class="fas fa-quote-left "></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos
-              id officiis hic
-              tenetur quae quaerat ad velit ab.
+              <i class="fas fa-quote-left "></i> Their meal is delicious and reasonably priced. Kind crews can be found everywhere, and they are eager to listen to the clients' additional demands and desires.
             </p>
 
             <!--Review-->
@@ -173,9 +170,8 @@
             <!--Content-->
             <h4 class="font-weight-bold">John Doe</h4>
             <p>
-              <i class="fas fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam
-              corporis suscipit laboriosam,
-              nisi ut aliquid ex ea commodi.
+              <i class="fas fa-quote-left"></i> First its the food, second is the place. It is so clean. 
+              The people are respectful and most of them are young. I guess they are students working part time.
             </p>
 
             <!--Review-->
