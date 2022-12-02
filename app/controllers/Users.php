@@ -133,7 +133,7 @@ class Users extends Controller
 
           // Register User
           if ($this->userModel->signup($data)) {
-            success('user_message', 'You are registered!');
+            success('user_message', '<i class="fa-solid fa-check mr-2"></i>You are registered!');
             redirect('users/login');
           } else {
             die('Something went wrong');

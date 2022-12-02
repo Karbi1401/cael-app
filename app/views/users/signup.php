@@ -54,7 +54,7 @@
 
                   </div>
                   <div class="col-md-6">
-                    <div class="p-5">
+                    <div class="p-5" style="background-color: #f8f9fa;">
 
                       <h3 class="fw-normal orange-text mb-3">Contact Information</h3>
 

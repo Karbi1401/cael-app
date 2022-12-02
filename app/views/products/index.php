@@ -30,7 +30,7 @@
                   <tr>
                     <td><?php echo $product->product_id; ?></td>
                     <td><?php echo $product->product_name; ?></td>
-                    <td><?php echo $product->product_price; ?></td>
+                    <td>&#8369;<?php echo $product->product_price; ?></td>
                     <td><?php echo $product->product_description; ?></td>
                     <td>
                       <img class='img-fluid' src='<?php echo URLROOT; ?>/public/img/<?php echo $product->product_image; ?>' alt='image' width='100'>

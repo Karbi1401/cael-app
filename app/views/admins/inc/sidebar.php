@@ -25,6 +25,11 @@
               <i class="fas fa-box"></i> Products
             </a>
           </li>
+          <li>
+            <a href="<?php echo URLROOT; ?>/Orders" class="collapsible-header waves-effect">
+              <i class="fas fa-shopping-cart"></i> Orders
+            </a>
+          </li>
         </ul>
       </li>
     </ul>

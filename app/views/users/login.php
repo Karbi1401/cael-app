@@ -9,9 +9,9 @@
           <div class="card">
             <div class="card-body p-0">
               <div class="row g-0 flex-lg-row-reverse">
-                <div class="col-md-6" style="background-color: #f8f9fa;">
+                <div class="col-md-6">
 
-                  <div class="p-5">
+                  <div class="p-5" style="background-color: #f8f9fa;">
                     <h2 class="display-5 font-weight-bold"><span class="span-orange">Cael's</span> Delivery</h2>
                     <h5 class="mt-2 mb-3"> You are our top priority!</h4>
                       <img src="<?php echo URLROOT; ?>/img/login.png" alt="" class="img-fluid">

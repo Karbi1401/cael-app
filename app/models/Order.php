@@ -132,4 +132,27 @@ class Order
       return false;
     }
   }
+
+  public function getAllOrders()
+  {
+    $this->db->query("SELECT *,
+                      orders.order_id as orderID, 
+                      users.user_id as userID, 
+                      shippings.shipping_id as shippingID, 
+                      payments.payment_id as paymentID, 
+                      orders.order_total as orderTotal, 
+                      orders.order_status as orderStatus 
+                      FROM orders 
+                      INNER JOIN users 
+                      ON orders.user_id = users.user_id 
+                      INNER JOIN shippings 
+                      ON orders.shipping_id = shippings.shipping_id 
+                      INNER JOIN payments 
+                      ON orders.payment_id = payments.payment_id
+                      ORDER BY orders.created_at ASC;");
+
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
 }
