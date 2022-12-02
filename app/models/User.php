@@ -13,7 +13,7 @@ class User
   public function signup($data)
   {
     // Create query
-    $this->db->query('INSERT INTO user
+    $this->db->query('INSERT INTO users
                       (user_first_name, 
                       user_last_name, 
                       user_email, 
@@ -53,7 +53,7 @@ class User
   // Login User
   public function login($username, $password)
   {
-    $this->db->query('SELECT * FROM user WHERE user_username = :username');
+    $this->db->query('SELECT * FROM users WHERE user_username = :username');
     $this->db->bind(':username', $username);
 
     $row = $this->db->single();
@@ -69,7 +69,7 @@ class User
   // Find user by email
   public function findUserByEmail($email)
   {
-    $this->db->query('SELECT * FROM user WHERE user_email = :email');
+    $this->db->query('SELECT * FROM users WHERE user_email = :email');
     // Bind value
     $this->db->bind(':email', $email);
 
@@ -86,7 +86,7 @@ class User
   // Find user by username
   public function findUserByUsername($username)
   {
-    $this->db->query('SELECT * FROM user WHERE user_username = :username');
+    $this->db->query('SELECT * FROM users WHERE user_username = :username');
     // Bind value
     $this->db->bind(':username', $username);
 
@@ -103,7 +103,7 @@ class User
   // Get user by ID
   public function getUserByID($id)
   {
-    $this->db->query('SELECT * FROM user WHERE user_id = :id');
+    $this->db->query('SELECT * FROM users WHERE user_id = :id');
     // Bind value
     $this->db->bind(':id', $id);
 

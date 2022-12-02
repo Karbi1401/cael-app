@@ -11,7 +11,7 @@ class Category
 
   public function getCategories()
   {
-    $this->db->query("SELECT * FROM category");
+    $this->db->query("SELECT * FROM categories");
 
     $results = $this->db->resultSet();
 
@@ -20,7 +20,7 @@ class Category
 
   public function getCategoryByID($id)
   {
-    $this->db->query('SELECT * FROM category WHERE category_id = :id');
+    $this->db->query('SELECT * FROM categories WHERE category_id = :id');
 
     $this->db->bind(':id', $id);
 
@@ -35,7 +35,7 @@ class Category
 
   public function findCategoryName($data)
   {
-    $this->db->query('SELECT * FROM category WHERE category_name = :category_name');
+    $this->db->query('SELECT * FROM categories WHERE category_name = :category_name');
 
     $this->db->bind(':category_name', $data['category_name']);
 
@@ -51,7 +51,7 @@ class Category
   public function addCategory($data)
   {
     $this->db->query("INSERT INTO 
-            					category (category_name, user_id)
+            					categories (category_name, user_id)
             					VALUES (:category_name, :user_id)");
 
     $this->db->bind(':category_name', $data['category_name']);
@@ -66,7 +66,7 @@ class Category
 
   public function updateCategory($data)
   {
-    $this->db->query('UPDATE category SET category_name = :category_name WHERE category_id = :id');
+    $this->db->query('UPDATE categories SET category_name = :category_name WHERE category_id = :id');
 
     $this->db->bind(':id', $data['id']);
     $this->db->bind(':category_name', $data['category_name']);
@@ -80,7 +80,7 @@ class Category
 
   public function changeCategoryStatusInactive($id)
   {
-    $this->db->query('UPDATE category SET category_status = 0 WHERE category_id = :id');
+    $this->db->query('UPDATE categories SET category_status = 0 WHERE category_id = :id');
 
     $this->db->bind(':id', $id);
 
@@ -93,7 +93,7 @@ class Category
 
   public function changeCategoryStatusActive($id)
   {
-    $this->db->query('UPDATE category SET category_status = 1 WHERE category_id = :id');
+    $this->db->query('UPDATE categories SET category_status = 1 WHERE category_id = :id');
 
     $this->db->bind(':id', $id);
 
@@ -106,7 +106,7 @@ class Category
 
   public function deleteCategory($id)
   {
-    $this->db->query('DELETE FROM category WHERE category_id = :id');
+    $this->db->query('DELETE FROM categories WHERE category_id = :id');
 
     $this->db->bind(':id', $id);
 
@@ -119,7 +119,7 @@ class Category
 
   public function getCategoryByStatus()
   {
-    $this->db->query('SELECT * FROM category WHERE category_status = 1');
+    $this->db->query('SELECT * FROM categories WHERE category_status = 1');
 
     $results = $this->db->resultSet();
 

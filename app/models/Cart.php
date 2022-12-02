@@ -12,19 +12,19 @@ class Cart
   public function getCart($id)
   {
     $this->db->query('SELECT *, 
-                      cart.cart_id as cartID, 
-                      user.user_id as userID, 
-                      product.product_id as productID,
-                      category.category_id as categoryID 
-                      FROM cart 
-                      INNER JOIN user 
-                      ON cart.user_id = user.user_id 
-                      INNER JOIN product 
-                      ON cart.product_id = product.product_id
-                      INNER JOIN category
-                      ON product.category_id = category.category_id
-                      WHERE cart.user_id = :user_id
-                      ORDER BY cart.created_at ASC');
+                      carts.cart_id as cartID, 
+                      users.user_id as userID, 
+                      products.product_id as productID,
+                      categories.category_id as categoryID 
+                      FROM carts
+                      INNER JOIN users 
+                      ON carts.user_id = users.user_id 
+                      INNER JOIN products 
+                      ON carts.product_id = products.product_id
+                      INNER JOIN categories
+                      ON products.category_id = categories.category_id
+                      WHERE carts.user_id = :user_id
+                      ORDER BY carts.created_at ASC');
 
     $this->db->bind(':user_id', $id);
 
@@ -39,7 +39,7 @@ class Cart
 
   public function findCartProduct($id, $user_id)
   {
-    $this->db->query("SELECT * FROM cart 
+    $this->db->query("SELECT * FROM carts 
                       WHERE product_id = :product_id AND user_id = :user_id");
 
     $this->db->bind(':product_id', $id);
@@ -54,7 +54,7 @@ class Cart
 
   public function addOne($id)
   {
-    $this->db->query("UPDATE cart SET cart_quantity = cart_quantity + 1
+    $this->db->query("UPDATE carts SET cart_quantity = cart_quantity + 1
                       WHERE product_id = :product_id 
                       AND user_id = :user_id");
 
@@ -66,7 +66,7 @@ class Cart
 
   public function addNew($id, $user_id, $price)
   {
-    $this->db->query("INSERT INTO cart (product_id, user_id, cart_quantity, cart_price)
+    $this->db->query("INSERT INTO carts (product_id, user_id, cart_quantity, cart_price)
                       VALUES (:product_id, :user_id, 1, :cart_price)");
 
     $this->db->bind(':product_id', $id);
@@ -78,7 +78,7 @@ class Cart
 
   public function deleteCartItem($id)
   {
-    $this->db->query("DELETE FROM cart WHERE cart_id = :id");
+    $this->db->query("DELETE FROM carts WHERE cart_id = :id");
 
     $this->db->bind(':id', $id);
 
@@ -87,7 +87,7 @@ class Cart
 
   public function clearCart()
   {
-    $this->db->query("DELETE FROM cart WHERE user_id = :id");
+    $this->db->query("DELETE FROM carts WHERE user_id = :id");
 
     $this->db->bind(':id', $_SESSION['user_id']);
 
@@ -96,7 +96,7 @@ class Cart
 
   public function updateQty($id, $qty)
   {
-    $this->db->query("UPDATE cart SET cart_quantity = :cart_quantity
+    $this->db->query("UPDATE carts SET cart_quantity = :cart_quantity
                       WHERE product_id = :product_id 
                       AND user_id = :user_id");
     $this->db->bind(':product_id', $id);

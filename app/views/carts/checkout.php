@@ -95,18 +95,18 @@ $qty = 0;
                 </div>
 
                 <div class="col-md-12 mb-3">
-                  <label for="order_schedule">Order Scheduled</label>
-                  <input type="datetime-local" class="form-control" id="order_schedule" name="order_scheduled">
+                  <label for="inputScheduleDate" class="form-label <?php echo (!empty($data['order_schedule_err'])) ? 'is-invalid' : ''; ?>">Order Schedule</label>
+                  <input type="datetime-local" class="form-control" id="inputScheduleDate" name="order_schedule" min="2022-07-13T00:00" required>
                   <span class="invalid-feedback"><?php echo $data['order_schedule_err']; ?></span>
                 </div>
 
                 <div class="form-group">
-                  <input type="hidden" name="qty" value='<?php echo $qty ?>'>
-                  <input type="hidden" name="total" value='<?php echo $total ?>'>
+                  <input type="hidden" name="qty" value='<?php echo $qty; ?>'>
+                  <input type="hidden" name="total" value='<?php echo $total; ?>'>
                 </div>
 
                 <div class="col-md-12 pt-1 mb-3">
-                  <button class="btn btn-orange btn-block" type="submit" value="Signup"><i class="fa-solid fa-cart-shopping mr-2"></i>Confirm Order</button>
+                  <button class="btn btn-orange btn-block" type="submit" value="Confirm Order"><i class="fa-solid fa-cart-shopping mr-2"></i>Confirm Order</button>
                 </div>
 
               </div>

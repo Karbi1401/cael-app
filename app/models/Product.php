@@ -12,11 +12,11 @@ class Product
   public function getProduct()
   {
     $this->db->query('SELECT *,
-                      category.category_name as categoryName
-                      FROM product
-                      INNER JOIN category
-                      ON product.category_id = category.category_id
-                      ORDER BY product.created_at ASC');
+                      categories.category_name as categoryName
+                      FROM products
+                      INNER JOIN categories
+                      ON products.category_id = categories.category_id
+                      ORDER BY products.created_at ASC');
 
     $results = $this->db->resultSet();
 
@@ -25,7 +25,7 @@ class Product
 
   public function getProductByID($id)
   {
-    $this->db->query('SELECT * FROM product WHERE product_id = :id');
+    $this->db->query('SELECT * FROM products WHERE product_id = :id');
 
     $this->db->bind(':id', $id);
 
@@ -36,7 +36,7 @@ class Product
 
   public function addProduct($data)
   {
-    $this->db->query("INSERT INTO product 
+    $this->db->query("INSERT INTO products
                       (product_name,
                       product_price,
                       product_description,
@@ -63,7 +63,7 @@ class Product
 
   public function updateProduct($data)
   {
-    $this->db->query('UPDATE product 
+    $this->db->query('UPDATE products 
                       SET product_name = :product_name, 
                       product_price = :product_price,
                       product_description = :product_description,             
@@ -87,7 +87,7 @@ class Product
 
   public function editProductImage($data)
   {
-    $this->db->query('UPDATE product SET product_image = :product_image WHERE product_id = :product_id');
+    $this->db->query('UPDATE products SET product_image = :product_image WHERE product_id = :product_id');
 
     $this->db->bind(':product_image', $data['product_image']);
     $this->db->bind(':product_id', $data['id']);
@@ -103,7 +103,7 @@ class Product
 
   public function getProductByName($data)
   {
-    $this->db->query('SELECT * FROM product WHERE product_name = :product_name');
+    $this->db->query('SELECT * FROM products WHERE product_name = :product_name');
 
     $this->db->bind(':product_name', $data['product_name']);
 
@@ -118,7 +118,7 @@ class Product
 
   public function changeProductStatusInactive($id)
   {
-    $this->db->query('UPDATE product SET product_status = 0 WHERE product_id = :id');
+    $this->db->query('UPDATE products SET product_status = 0 WHERE product_id = :id');
 
     $this->db->bind(':id', $id);
 
@@ -131,7 +131,7 @@ class Product
 
   public function changeProductStatusActive($id)
   {
-    $this->db->query('UPDATE product SET product_status = 1 WHERE product_id = :id');
+    $this->db->query('UPDATE products SET product_status = 1 WHERE product_id = :id');
 
     $this->db->bind(':id', $id);
 
@@ -144,7 +144,7 @@ class Product
 
   public function deleteProduct($id)
   {
-    $this->db->query('DELETE FROM product WHERE product_id = :id');
+    $this->db->query('DELETE FROM products WHERE product_id = :id');
 
     $this->db->bind(':id', $id);
 
@@ -157,7 +157,7 @@ class Product
 
   public function getProductByStatus()
   {
-    $this->db->query('SELECT * FROM product WHERE product_status = 1 ORDER BY created_at ASC');
+    $this->db->query('SELECT * FROM products WHERE product_status = 1 ORDER BY created_at ASC');
 
     $results = $this->db->resultSet();
 
@@ -167,14 +167,14 @@ class Product
   public function getProductByCategory($id)
   {
     $this->db->query('SELECT *,
-                      product.product_id as productID,
-                      product.category_id as tblproductCategoryID,
-                      category.category_id as tblcategoryCategoryID
-                      FROM product
-                      INNER JOIN category
-                      ON product.category_id = category.category_id
-                      WHERE category.category_id = :id
-                      ORDER BY product.created_at ASC');
+                      products.product_id as productID,
+                      products.category_id as tblproductCategoryID,
+                      categories.category_id as tblcategoryCategoryID
+                      FROM products
+                      INNER JOIN categories
+                      ON products.category_id = categories.category_id
+                      WHERE categories.category_id = :id
+                      ORDER BY products.created_at ASC');
 
     $this->db->bind(':id', $id);
 
