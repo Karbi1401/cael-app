@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2022 at 08:03 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Dec 02, 2022 at 03:00 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,52 +24,125 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Table structure for table `carts`
 --
 
-CREATE TABLE `cart` (
+CREATE TABLE `carts` (
   `cart_id` int(11) NOT NULL,
   `cart_price` varchar(255) NOT NULL,
   `cart_quantity` varchar(255) NOT NULL,
   `product_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Table structure for table `categories`
 --
 
-CREATE TABLE `category` (
+CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `category_status` int(11) NOT NULL DEFAULT 0,
-  `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `category`
+-- Dumping data for table `categories`
 --
 
-INSERT INTO `category` (`category_id`, `category_name`, `category_status`, `user_id`, `created_at`) VALUES
-(23, 'Beef', 1, 3, '2022-11-24 23:56:25'),
-(24, 'Chicken', 1, 3, '2022-11-24 23:59:21'),
-(25, 'Pork', 1, 3, '2022-11-27 12:11:20'),
-(26, 'Pasta', 1, 3, '2022-11-27 12:19:21'),
-(27, 'Dessert', 1, 3, '2022-11-27 12:26:09'),
-(28, 'Beverages', 1, 3, '2022-11-27 12:27:32'),
-(29, 'Vegetables', 1, 3, '2022-11-27 12:29:03');
+INSERT INTO `categories` (`category_id`, `category_name`, `category_status`, `created_at`) VALUES
+(23, 'Beef', 1, '2022-11-24 23:56:25'),
+(24, 'Chicken', 1, '2022-11-24 23:59:21'),
+(25, 'Pork', 1, '2022-11-27 12:11:20'),
+(26, 'Pasta', 1, '2022-11-27 12:19:21'),
+(27, 'Dessert', 1, '2022-11-27 12:26:09'),
+(28, 'Beverages', 1, '2022-11-27 12:27:32'),
+(29, 'Vegetables', 1, '2022-11-27 12:29:03');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Table structure for table `orderdetails`
 --
 
-CREATE TABLE `product` (
+CREATE TABLE `orderdetails` (
+  `order_detail_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_price` varchar(255) NOT NULL,
+  `product_quantity` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `shipping_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`order_detail_id`, `order_id`, `product_id`, `product_name`, `product_price`, `product_quantity`, `user_id`, `shipping_id`, `created_at`) VALUES
+(13, 93, 4, 'Beef & Mushroom', '300', '1', 5, 40, '2022-12-02 20:37:06'),
+(14, 93, 5, 'Breaded Fried Chicken', '150', '1', 5, 40, '2022-12-02 20:37:06'),
+(15, 94, 4, 'Beef & Mushroom', '300', '1', 5, 41, '2022-12-02 20:48:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `order_schedule` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `shipping_id` int(11) NOT NULL,
+  `payment_id` int(11) NOT NULL,
+  `order_total` varchar(255) NOT NULL,
+  `order_status` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_schedule`, `user_id`, `shipping_id`, `payment_id`, `order_total`, `order_status`, `created_at`) VALUES
+(93, '2022-12-02 20:37:00', 5, 40, 40, '450', 0, '2022-12-02 20:37:06'),
+(94, '2022-12-02 20:48:00', 5, 41, 41, '300', 0, '2022-12-02 20:48:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `payment_id` int(11) NOT NULL,
+  `payment_method` varchar(255) NOT NULL,
+  `payment_status` int(11) NOT NULL DEFAULT 0,
+  `shipping_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`payment_id`, `payment_method`, `payment_status`, `shipping_id`, `created_at`) VALUES
+(40, 'cash', 0, 40, '2022-12-02 20:37:06'),
+(41, 'cash', 0, 41, '2022-12-02 20:48:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `product_price` varchar(255) NOT NULL,
@@ -78,13 +151,13 @@ CREATE TABLE `product` (
   `product_status` int(11) NOT NULL DEFAULT 0,
   `category_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `product`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_description`, `product_image`, `product_status`, `category_id`, `created_at`) VALUES
+INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `product_description`, `product_image`, `product_status`, `category_id`, `created_at`) VALUES
 (4, 'Beef & Mushroom', '300', 'Good for 5 people. Beef and Mushroom Braised Stew is a rich and flavorful beef stew dish. Loaded with fork-tender beef, mushrooms, and creamy gravy, it’s sure to be a party hit!', 'Beef and Mushroom.jpg', 1, 23, '2022-11-25 00:09:45'),
 (5, 'Breaded Fried Chicken', '150', 'Good for 3 persons. Simple but flavorful, fried chicken is a treat for both kids and adults alike. Whether you’re enjoying it at a kid’s birthday party or serving it as an appetizer for game night is a good choice.', 'Breaded Fried Chicken.png', 1, 24, '2022-11-27 12:10:12'),
 (6, 'Pork Barbecue', '23', 'Tender pieces of flavorful pork glazed with a sweet and savory sauce and fresh off the grill–these pork BBQ skewers are so mouth-watering that you’ll want to hoard them all on your plate.', 'Pork Barbecue.png', 1, 25, '2022-11-27 12:12:57'),
@@ -96,10 +169,35 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `shippings`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `shippings` (
+  `shipping_id` int(11) NOT NULL,
+  `shipping_first_name` varchar(255) NOT NULL,
+  `shipping_last_name` varchar(255) NOT NULL,
+  `shipping_email` varchar(255) NOT NULL,
+  `shipping_contact` varchar(255) NOT NULL,
+  `shipping_address` varchar(255) NOT NULL,
+  `shipping_city` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `shippings`
+--
+
+INSERT INTO `shippings` (`shipping_id`, `shipping_first_name`, `shipping_last_name`, `shipping_email`, `shipping_contact`, `shipping_address`, `shipping_city`, `created_at`) VALUES
+(40, 'Patrick', 'Arganza', 'banz@gmail.com', '09772880179', '#7 Belfast St. Vista Verde North Executive Village, Brgy 167, Caloocan City', 'Caloocan City', '2022-12-02 20:37:06'),
+(41, 'Patrick', 'Arganza', 'banz@gmail.com', '09772880179', '#7 Belfast St. Vista Verde North Executive Village, Brgy 167, Caloocan City', 'Caloocan City', '2022-12-02 20:48:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `user_first_name` varchar(255) NOT NULL,
   `user_last_name` varchar(255) NOT NULL,
@@ -112,42 +210,66 @@ CREATE TABLE `user` (
   `user_role` varchar(255) NOT NULL DEFAULT 'user',
   `user_image` text NOT NULL DEFAULT 'default_avatar.png',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `user` (`user_id`, `user_first_name`, `user_last_name`, `user_email`, `user_contact`, `user_address`, `user_city`, `user_username`, `user_password`, `user_role`, `user_image`, `created_at`) VALUES
-(3, 'Kurt Carvey', 'Cadenas', 'kurtcarveycadenas1401@gmail.com', NULL, NULL, NULL, 'krtcrvy', '$2y$10$E4dHFzW4LElasXnPJFHsFuXpQNl2AFfRGJS.89JSPSuWPOyx/KB5C', 'admin', 'default_avatar.png', '2022-11-24 21:20:36'),
-(4, 'Patrick Eugene', 'Arganza', 'banz@gmail.com', NULL, NULL, NULL, 'banz', '$2y$10$Rf/vlWjI5JRDcYktRa7sm.GFcLDNRJaJQunUOkKQK.wgWDgpXRAYG', 'user', 'default_avatar.png', '2022-11-24 22:20:41');
+INSERT INTO `users` (`user_id`, `user_first_name`, `user_last_name`, `user_email`, `user_contact`, `user_address`, `user_city`, `user_username`, `user_password`, `user_role`, `user_image`, `created_at`) VALUES
+(5, 'Patrick', 'Arganza', 'banz@gmail.com', '09772880179', '#7 Belfast St. Vista Verde North Executive Village, Brgy 167, Caloocan City', 'Caloocan City', 'banz', '$2y$10$6DidZz8a5UBNExJYLsRx9.wCGJ8NwbyoH.vZU2FnJrLnL/09Yvol2', 'user', 'default_avatar.png', '2022-12-02 02:09:03'),
+(6, 'Kurt', 'Cadenas', 'kurtcarveycadenas1401@gmail.com', '09772880178', '#8 Belfast St. Vista Verde North Executive Village, Brgy 167, Caloocan City', 'Caloocan City', 'krtcrvy', '$2y$10$ZUPscgoHNJRw7G7FfWJGi.3rdg1UN4mLqnBZELoSneIKSS5oWFgZu', 'admin', 'default_avatar.png', '2022-12-02 02:12:04');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `cart`
+-- Indexes for table `carts`
 --
-ALTER TABLE `cart`
+ALTER TABLE `carts`
   ADD PRIMARY KEY (`cart_id`);
 
 --
--- Indexes for table `category`
+-- Indexes for table `categories`
 --
-ALTER TABLE `category`
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- Indexes for table `product`
+-- Indexes for table `orderdetails`
 --
-ALTER TABLE `product`
+ALTER TABLE `orderdetails`
+  ADD PRIMARY KEY (`order_detail_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`payment_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `shippings`
 --
-ALTER TABLE `user`
+ALTER TABLE `shippings`
+  ADD PRIMARY KEY (`shipping_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
@@ -155,28 +277,52 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `cart`
+-- AUTO_INCREMENT for table `carts`
 --
-ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+ALTER TABLE `carts`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `category`
+-- AUTO_INCREMENT for table `categories`
 --
-ALTER TABLE `category`
+ALTER TABLE `categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT for table `orderdetails`
 --
-ALTER TABLE `product`
+ALTER TABLE `orderdetails`
+  MODIFY `order_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `shippings`
 --
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `shippings`
+  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
