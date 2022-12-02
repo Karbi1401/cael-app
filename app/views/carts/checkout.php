@@ -53,6 +53,14 @@ $qty = 0;
                 <span class="invalid-feedback"><?php echo $data['city_err']; ?></span>
               </div>
 
+              <div class="col-md-12 mb-3">
+                <label for="payment_method">Payment method</label>
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" id="payment_method" name="payment_method">
+                  <label class="custom-control-label" for="payment_method">Cash on delivery</label>
+                </div>
+              </div>
+
               <div class="col-md-12 pt-1 mb-3">
                 <button class="btn btn-orange btn-block" type="submit" value="Signup"><i class="fa-solid fa-cart-shopping mr-2"></i>Confirm Order</button>
               </div>
@@ -65,7 +73,7 @@ $qty = 0;
       <div class="col-md-4 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="orange-text">Your cart</span>
-          <span class="badge badge-danger badge-pill">3</span>
+          <span class="badge badge-danger badge-pill"><?php echo $_SESSION['user_cart']; ?></span>
         </h4>
 
         <ul class="list-group mb-3 z-depth-1">
@@ -82,9 +90,13 @@ $qty = 0;
             $qty = $qty + ($cart->cart_quantity);
           endforeach;
           ?>
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (Peso)</span>
-            <strong>&#8369;<?php echo number_format($total, 2, '.', ''); ?></strong>
+          <li class="list-group-item d-flex justify-content-between font-weight-bold">
+            <span>Total Quantity:</span>
+            <strong class="font-weight-bold"><?php echo $qty; ?></strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between font-weight-bold">
+            <span>Total (Peso):</span>
+            <strong class="font-weight-bold">&#8369;<?php echo number_format($total, 2, '.', ''); ?></strong>
           </li>
         </ul>
       </div>
