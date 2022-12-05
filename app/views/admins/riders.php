@@ -48,7 +48,7 @@
                         </a>
                         <a href="<?php echo URLROOT; ?>/admins/editRider/<?php echo $rider->rider_id; ?>"><i class="fa-solid fa-pen-to-square teal-text" data-toggle="tooltip" data-placement="top" title="Update Rider Information"></i>
                         </a>
-                        <a onclick="deleteProduct()" href="<?php echo URLROOT; ?>/admins/deleteRider/<?php echo $rider->rider_id; ?>"><i class="fa-solid fa-trash red-text" data-toggle="tooltip" data-placement="top" title="Delete Rider Information"></i></a>
+                        <a onclick="deleteRider()" href="<?php echo URLROOT; ?>/admins/deleteRider/<?php echo $rider->rider_id; ?>"><i class="fa-solid fa-trash red-text" data-toggle="tooltip" data-placement="top" title="Delete Rider Information"></i></a>
                       </div>
                     </td>
                   </tr>

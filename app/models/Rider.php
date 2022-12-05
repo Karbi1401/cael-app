@@ -98,4 +98,46 @@ class Rider
 
     return $row;
   }
+
+  public function editRider($data)
+  {
+    $this->db->query("UPDATE riders 
+                      SET rider_username = :rider_username,
+                      rider_first_name = :rider_first_name,
+                      rider_last_name = :rider_last_name,
+                      rider_email = :rider_email,
+                      rider_contact = :rider_contact,
+                      rider_address = :rider_address,
+                      rider_city = :rider_city
+                      WHERE rider_id = :rider_id");
+
+    $this->db->bind(':rider_id', $data['rider_id']);
+    $this->db->bind(':rider_username', $data['username']);
+    $this->db->bind(':rider_first_name', $data['first_name']);
+    $this->db->bind(':rider_last_name', $data['last_name']);
+    $this->db->bind(':rider_email', $data['email']);
+    $this->db->bind(':rider_contact', $data['contact_number']);
+    $this->db->bind(':rider_address', $data['address']);
+    $this->db->bind(':rider_city', $data['city']);
+
+    // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function deleteRider($rider_id)
+  {
+    $this->db->query('DELETE FROM riders WHERE rider_id = :rider_id');
+
+    $this->db->bind(':rider_id', $rider_id);
+
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -53,6 +53,13 @@
     }
   }
 
+  function deleteRider() {
+    var result = confirm("Are you sure you want to delete the rider information?");
+    if (result == false) {
+      event.preventDefault();
+    }
+  }
+
   $(document).ready(function() {
     $(".mdb-select").materialSelect();
   });
