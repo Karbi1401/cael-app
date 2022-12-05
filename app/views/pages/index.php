@@ -8,6 +8,23 @@
   }
 </style> -->
 
+<style>
+  label {
+      vertical-align: middle;
+    }
+
+    input[type=password],
+    input[type=text] {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: block;
+      font-size: 18px;
+      margin: 5px 0px 10px;
+      padding: 8px;
+      width: 250px;
+}
+</style>
+
 <div role="alert" aria-live="assertive" aria-atomic="true" class="toast fixed-bottom m-5 ms-auto"
      data-bs-autohide="false">
      <div class="toast-header">
@@ -59,6 +76,7 @@
       <div class="divider-new">
         <h2 class="h2-responsive my-4 py-4 font-weight-bold wow fadeInDown orange-text" data-wow-delay="0.2s">
           You are our top priority!
+          
         </h2>
       </div>
 
