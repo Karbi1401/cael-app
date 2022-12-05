@@ -9,7 +9,7 @@
       <h5 class="my-4 dark-grey-text font-weight-bold"><i class="fas fa-motorcycle mr-2"></i> Riders</h5>
       <div class="card">
         <div class="card-body">
-          <a href="<?php echo URLROOT; ?>/admins/addRider" class="btn btn-primary btn-rounded btn-sm mb-3" role="button"><i class="fas fa-plus mr-2"></i> Add Rider</a>
+          <a href="<?php echo URLROOT; ?>/riders/add" class="btn btn-primary btn-rounded btn-sm mb-3" role="button"><i class="fas fa-plus mr-2"></i> Add Rider</a>
 
           <div class="table-responsive">
 
@@ -44,11 +44,11 @@
                     <td><?php echo $rider->rider_city; ?></td>
                     <td>
                       <div class="d-flex justify-content-between">
-                        <a href="<?php echo URLROOT; ?>/admins/editRiderImage/<?php echo $rider->rider_id; ?>"><i class="fa-solid fa-image teal-text" data-toggle="tooltip" data-placement="top" title="Update Rider Image"></i>
+                        <a href="<?php echo URLROOT; ?>/riders/editRiderImage/<?php echo $rider->rider_id; ?>"><i class="fa-solid fa-image teal-text" data-toggle="tooltip" data-placement="top" title="Update Rider Image"></i>
                         </a>
-                        <a href="<?php echo URLROOT; ?>/admins/editRider/<?php echo $rider->rider_id; ?>"><i class="fa-solid fa-pen-to-square teal-text" data-toggle="tooltip" data-placement="top" title="Update Rider Information"></i>
+                        <a href="<?php echo URLROOT; ?>/riders/edit/<?php echo $rider->rider_id; ?>"><i class="fa-solid fa-pen-to-square teal-text" data-toggle="tooltip" data-placement="top" title="Update Rider Information"></i>
                         </a>
-                        <a onclick="deleteRider()" href="<?php echo URLROOT; ?>/admins/deleteRider/<?php echo $rider->rider_id; ?>"><i class="fa-solid fa-trash red-text" data-toggle="tooltip" data-placement="top" title="Delete Rider Information"></i></a>
+                        <a onclick="deleteRider()" href="<?php echo URLROOT; ?>/riders/deleteRider/<?php echo $rider->rider_id; ?>"><i class="fa-solid fa-trash red-text" data-toggle="tooltip" data-placement="top" title="Delete Rider Information"></i></a>
                       </div>
                     </td>
                   </tr>

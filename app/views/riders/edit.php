@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="col-md-12">
       <?php success('rider_message'); ?>
-      <form action="<?php echo URLROOT; ?>/admins/editRider/<?php echo $data['rider_id']; ?>" method="POST">
+      <form action="<?php echo URLROOT; ?>/admins/edit/<?php echo $data['rider_id']; ?>" method="POST">
         <h5 class="my-4 dark-grey-text font-weight-bold"><i class="fas fa-motorcycle mr-2"></i> Add Rider</h5>
 
         <div class="row">

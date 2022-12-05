@@ -26,7 +26,7 @@
             </a>
           </li>
           <li>
-            <a href="<?php echo URLROOT; ?>/admins/riders" class="collapsible-header waves-effect">
+            <a href="<?php echo URLROOT; ?>/riders" class="collapsible-header waves-effect">
               <i class="fas fa-motorcycle"></i> Riders
             </a>
           </li>
