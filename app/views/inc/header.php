@@ -15,7 +15,10 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/frontend/css/mdb.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/frontend/css/style.css">
   <script src="https://kit.fontawesome.com/45433fcb60.js" crossorigin="anonymous"></script>
-  
+  <link rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+      crossorigin="anonymous">
       <!-- CSS only -->
      
 </head>
