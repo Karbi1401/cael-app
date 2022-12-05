@@ -20,7 +20,6 @@
                   <th>Image</th>
                   <th>First Name</th>
                   <th>Last Name</th>
-                  <th>Username</th>
                   <th>Email</th>
                   <th>Contact</th>
                   <th>Address</th>
@@ -37,7 +36,6 @@
                     </td>
                     <td><?php echo $rider->rider_first_name; ?></td>
                     <td><?php echo $rider->rider_last_name; ?></td>
-                    <td><?php echo $rider->rider_username; ?></td>
                     <td><?php echo $rider->rider_email; ?></td>
                     <td><?php echo $rider->rider_contact; ?></td>
                     <td><?php echo $rider->rider_address; ?></td>

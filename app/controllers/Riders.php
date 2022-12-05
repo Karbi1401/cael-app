@@ -26,8 +26,6 @@ class Riders extends Controller
         'last_name' => trim(ucwords($_POST['last_name'])),
         'email' => trim($_POST['email']),
         'username' => trim($_POST['username']),
-        'password' => trim($_POST['password']),
-        'confirm_password' => trim($_POST['confirm_password']),
         'email' => trim($_POST['email']),
         'contact_number' => trim($_POST['contact_number']),
         'address' => trim($_POST['address']),
@@ -36,8 +34,6 @@ class Riders extends Controller
         'last_name_err' => '',
         'email_err' => '',
         'username_err' => '',
-        'password_err' => '',
-        'confirm_password_err' => '',
         'email_err' => '',
         'contact_number_err' => '',
         'address_err' => '',
@@ -69,22 +65,6 @@ class Riders extends Controller
         // Check username
         if ($this->riderModel->findRiderByUsername($data['username'])) {
           $data['username_err'] = 'Username is already taken';
-        }
-      }
-
-      // Validate Password
-      if (empty($data['password'])) {
-        $data['password_err'] = 'Please enter password';
-      } elseif (strlen($data['password']) < 6) {
-        $data['password_err'] = 'Password must be at least 6 characters';
-      }
-
-      // Validate Confirm Password
-      if (empty($data['confirm_password'])) {
-        $data['confirm_password_err'] = 'Please confirm password';
-      } else {
-        if ($data['password'] != $data['confirm_password']) {
-          $data['confirm_password_err'] = 'Passwords do not match';
         }
       }
 
@@ -126,9 +106,7 @@ class Riders extends Controller
         $data['city_err'] = 'City must only contain letters';
       }
 
-      if (empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['username_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['email_err']) && empty($data['contact_number_err']) && empty($data['address_err']) && empty($data['city_err'])) {
-
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+      if (empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['username_err']) && empty($data['email_err']) && empty($data['contact_number_err']) && empty($data['address_err']) && empty($data['city_err'])) {
 
         if ($this->riderModel->addRider($data)) {
           success('rider_message', '<i class="fa-solid fa-check mr-2"></i>Rider Information Added Successfully!');
@@ -143,20 +121,12 @@ class Riders extends Controller
       $data = [
         'first_name' => '',
         'last_name' => '',
-        'username' => '',
-        'email' => '',
-        'password' => '',
-        'confirm_password' => '',
         'email' => '',
         'contact_number' => '',
         'address' => '',
         'city' => '',
         'first_name_err' => '',
         'last_name_err' => '',
-        'email_err' => '',
-        'username_err' => '',
-        'password_err' => '',
-        'confirm_password_err' => '',
         'email_err' => '',
         'contact_number_err' => '',
         'address_err' => '',

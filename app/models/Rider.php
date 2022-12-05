@@ -30,18 +30,14 @@ class Rider
                       rider_email, 
                       rider_contact,
                       rider_address,
-                      rider_city,
-                      rider_username, 
-                      rider_password) 
+                      rider_city) 
                       VALUES 
                       (:first_name, 
                       :last_name, 
                       :email, 
                       :contact,
                       :address,
-                      :city,
-                      :username, 
-                      :password)');
+                      :city)');
 
     $this->db->bind(':first_name', $data['first_name']);
     $this->db->bind(':last_name', $data['last_name']);
@@ -49,8 +45,6 @@ class Rider
     $this->db->bind(':contact', $data['contact_number']);
     $this->db->bind(':address', $data['address']);
     $this->db->bind(':city', $data['city']);
-    $this->db->bind(':username', $data['username']);
-    $this->db->bind(':password', $data['password']);
 
     if ($this->db->execute()) {
       return true;
