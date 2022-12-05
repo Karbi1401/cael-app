@@ -1,6 +1,26 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
+<!-- <style>
+  .toast{
+    position: fixed!important; 
+    left: 75%;
+  }
+</style> -->
+
+<div role="alert" aria-live="assertive" aria-atomic="true" class="toast fixed-bottom m-5 ms-auto"
+     data-bs-autohide="false">
+     <div class="toast-header">
+         <img src="<?php echo URLROOT; ?>/img/logo.png" height="40px" width="40px" class="rounded me-2" alt="...">
+         <strong class="me-auto">Cael's Delivery</strong>
+         <small>Just now</small>
+         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+     </div>
+     <div class="toast-body">
+         WELCOME TO CAEL'S DELIVERY
+     </div>
+ </div>
+
 <div id="home" class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('<?php echo URLROOT; ?>/img/bgparallax.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
   <div class="mask rgba-black-slight">
     <div class="container h-100 d-flex justify-content-center align-items-center">
@@ -223,5 +243,17 @@
 </main>
 
 
+<script>
+  // TOAST
 
+window.onload = (event) => {
+    let myAlert = document.querySelector('.toast');
+    let bsAlert = new bootstrap.Toast(myAlert);
+    
+    setTimeout(function () {
+        bsAlert.show();
+    }, 800);
+};
+
+</script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
