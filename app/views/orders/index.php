@@ -9,63 +9,75 @@
       <h5 class="my-4 dark-grey-text font-weight-bold"><i class="fas fa-shopping-cart mr-2"></i> Pending Orders</h5>
       <div class="card">
         <div class="card-body">
-          <div class="table-responsive">
-            <table id="myTable" class="table table-striped display" cellspacing="0" width="100%">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Order Total</th>
-                  <th>Payment Method</th>
-                  <th>Order Schedule</th>
-                  <th>Order Status</th>
-                  <th>Payment Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <?php foreach ($data['orders'] as $order) : ?>
+          <?php if (isset($data['orders'])) : ?>
+            <div class="table-responsive">
+              <table id="myTable" class="table table-striped display" cellspacing="0" width="100%">
+                <thead>
                   <tr>
-                    <td><?php echo $order->order_id; ?></td>
-                    <td>&#8369;<?php echo $order->order_total; ?></td>
-                    <td><?php echo $order->payment_method; ?></td>
-                    <td><?php echo $order->order_schedule; ?></td>
-                    <td>
-                      <?php
-                      if ($order->order_status == 0) {
-                        echo '<span class="badge badge-warning">Pending</span>';
-                      } elseif ($order->order_status == 1) {
-                        echo '<span class="badge badge-success">Completed</span>';
-                      } elseif ($order->order_status == 2) {
-                        echo '<span class="badge badge-danger">Cancelled</span>';
-                      }
-                      ?>
-                    </td>
-                    <td>
-                      <?php
-                      if ($order->payment_status == 0) {
-                        echo '<span class="badge badge-warning">Pending</span>';
-                      } elseif ($order->payment_status == 1) {
-                        echo '<span class="badge badge-success">Completed</span>';
-                      } elseif ($order->payment_status == 2) {
-                        echo '<span class="badge badge-danger">Cancelled</span>';
-                      }
-                      ?>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-between">
-                        <a href="<?php echo URLROOT; ?>/products/editProductImage/<?php echo $order->order_id; ?>"><i class="fa-solid fa-info blue-text" data-toggle="tooltip" data-placement="top" title="View Order Details"></i>
-                        </a>
-                        <a href="<?php echo URLROOT; ?>/products/edit/<?php echo $order->order_id; ?>"><i class="fa-solid fa-check green-text" data-toggle="tooltip" data-placement="top" title="Update Product"></i>
-                        </a>
-                        <a onclick="deleteProduct()" href="<?php echo URLROOT; ?>/products/delete/<?php echo $order->order_id; ?>"><i class="fa-solid fa-x red-text" data-toggle="tooltip" data-placement="top" title="Delete Product"></i></a>
-                      </div>
-                    </td>
+                    <th>ID</th>
+                    <th>Order Total</th>
+                    <th>Payment Method</th>
+                    <th>Order Schedule</th>
+                    <th>Rider Assigned</th>
+                    <th>Order Status</th>
+                    <th>Payment Status</th>
+                    <th>Actions</th>
                   </tr>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
+                </thead>
+
+                <tbody>
+                  <?php foreach ($data['orders'] as $order) : ?>
+                    <tr>
+                      <td><?php echo $order->order_id; ?></td>
+                      <td>&#8369;<?php echo $order->order_total; ?></td>
+                      <td><?php echo $order->payment_method; ?></td>
+                      <td><?php echo $order->order_schedule; ?></td>
+                      <td>
+                        <?php if ($order->rider_id == 0) : ?>
+                          <span class="badge badge-warning">Pending</span>
+                        <?php endif; ?>
+                      </td>
+                      <td>
+                        <?php
+                        if ($order->order_status == 0) {
+                          echo '<span class="badge badge-warning">Pending</span>';
+                        } elseif ($order->order_status == 1) {
+                          echo '<span class="badge badge-default">On delivery</span>';
+                        } elseif ($order->order_status == 2) {
+                          echo '<span class="badge badge-success">Completed</span>';
+                        } elseif ($order->order_status == 3) {
+                          echo '<span class="badge badge-danger">Cancelled</span>';
+                        }
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                        if ($order->payment_status == 0) {
+                          echo '<span class="badge badge-warning">Pending</span>';
+                        } elseif ($order->payment_status == 1) {
+                          echo '<span class="badge badge-success">Completed</span>';
+                        } elseif ($order->payment_status == 2) {
+                          echo '<span class="badge badge-danger">Cancelled</span>';
+                        }
+                        ?>
+                      </td>
+                      <td>
+                        <div class="d-flex justify-content-around">
+                          <a href="<?php echo URLROOT; ?>/orders/details/<?php echo $order->order_id; ?>"><i class="fa-solid fa-info blue-text" data-toggle="tooltip" data-placement="top" title="View Order Details"></i>
+                          </a>
+                          <a href="<?php echo URLROOT; ?>/orders/assignRider/<?php echo $order->order_id; ?>"><i class="fa-solid fa-motorcycle teal-text" data-toggle="tooltip" data-placement="top" title="Assign Rider"></i>
+                          </a>
+                          <a onclick="deleteProduct()" href="<?php echo URLROOT; ?>/orders/cancelOrder/<?php echo $order->order_id; ?>/<?php echo $order->payment_id; ?>"><i class="fa-solid fa-x red-text" data-toggle="tooltip" data-placement="top" title="Cancel Order"></i></a>
+                        </div>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+          <?php else : ?>
+            <h5>There are no pending orders!</h5>
+          <?php endif; ?>
         </div>
       </div>
 

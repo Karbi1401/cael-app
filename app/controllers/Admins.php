@@ -14,4 +14,9 @@ class Admins extends Controller
       redirect('pages');
     }
   }
+
+  public function riders()
+  {
+    $this->view('admins/riders');
+  }
 }

@@ -148,17 +148,182 @@ class Order
                       INNER JOIN shippings 
                       ON orders.shipping_id = shippings.shipping_id 
                       INNER JOIN payments 
-                      ON orders.payment_id = payments.payment_id 
-                      AND orders.order_status = 0
+                      ON orders.payment_id = payments.payment_id
+                      WHERE
+                      orders.order_status = 0
                       AND payments.payment_status = 0
                       ORDER BY orders.created_at ASC;");
 
-    $orders = $this->db->resultSet();
+    $results = $this->db->resultSet();
 
-    if ($orders) {
-      return $orders;
+    return $results;
+  }
+
+  public function getAllOnDeliveryOrders()
+  {
+    $this->db->query("SELECT *, 
+                      orders.order_id as orderID, 
+                      users.user_id as userID, 
+                      shippings.shipping_id as shippingID, 
+                      payments.payment_id as paymentID, 
+                      orders.order_total as orderTotal, 
+                      orders.order_status as orderStatus 
+                      FROM orders 
+                      INNER JOIN users 
+                      ON orders.user_id = users.user_id 
+                      INNER JOIN shippings 
+                      ON orders.shipping_id = shippings.shipping_id 
+                      INNER JOIN payments 
+                      ON orders.payment_id = payments.payment_id
+                      INNER JOIN riders
+                      ON orders.rider_id = riders.rider_id
+                      WHERE
+                      orders.order_status = 1
+                      AND payments.payment_status = 0
+                      ORDER BY orders.created_at ASC;");
+
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
+
+  public function orderDeliver($order_id)
+  {
+    $this->db->query("UPDATE orders 
+                      SET order_status = :order_status
+                      WHERE order_id = :order_id");
+    $this->db->bind(':order_status', 1);
+    $this->db->bind(':order_id', $order_id);
+
+    return $this->db->execute();
+  }
+
+  public function orderComplete($order_id)
+  {
+    $this->db->query("UPDATE orders 
+                      SET order_status = :order_status
+                      WHERE order_id = :order_id");
+    $this->db->bind(':order_status', 2);
+    $this->db->bind(':order_id', $order_id);
+
+    return $this->db->execute();
+  }
+
+  public function orderCancel($order_id)
+  {
+    $this->db->query("UPDATE orders 
+                      SET order_status = :order_status
+                      WHERE order_id = :order_id");
+    $this->db->bind(':order_status', 3);
+    $this->db->bind(':order_id', $order_id);
+
+    return $this->db->execute();
+  }
+
+  public function getAllOrderDetails($order_id)
+  {
+    $this->db->query("SELECT *, 
+                      orderdetails.order_detail_id as orderDetailID, 
+                      orders.order_id as orderID, 
+                      products.product_id as productID, 
+                      users.user_id as userID,
+                      shippings.shipping_id as shippingID,
+                      users.user_first_name as userFirstName,
+                      users.user_last_name as userLastName,
+                      users.user_email as userEmail,
+                      users.user_contact as userContact,
+                      shippings.shipping_first_name as shippingFirstName,
+                      shippings.shipping_last_name as shippingLastName,
+                      shippings.shipping_email as shippingEmail,
+                      shippings.shipping_contact as shippingContact,
+                      shippings.shipping_address as shippingAddress,
+                      shippings.shipping_city as shippingCity
+                      FROM orderdetails
+                      INNER JOIN orders 
+                      ON orderdetails.order_id = orders.order_id
+                      INNER JOIN products 
+                      ON orderdetails.product_id = products.product_id 
+                      INNER JOIN users 
+                      ON orderdetails.user_id = users.user_id
+                      INNER JOIN shippings
+                      ON orderdetails.shipping_id = shippings.shipping_id
+                      WHERE orders.order_id = :order_id
+                      ORDER BY orderdetails.created_at ASC;");
+
+    $this->db->bind(':order_id', $order_id);
+
+    $orders_detail = $this->db->resultSet();
+
+    if ($orders_detail) {
+      return $orders_detail;
     } else {
       return false;
     }
+  }
+
+  public function assignRiderOrder($order_id, $rider_id)
+  {
+    $this->db->query("UPDATE orders 
+                      SET rider_id = :rider_id
+                      WHERE order_id = :order_id");
+
+    $this->db->bind(':rider_id', $rider_id);
+    $this->db->bind(':order_id', $order_id);
+
+    return $this->db->execute();
+  }
+
+  public function getAllCompletedOrders()
+  {
+    $this->db->query("SELECT *, 
+                      orders.order_id as orderID, 
+                      users.user_id as userID, 
+                      shippings.shipping_id as shippingID, 
+                      payments.payment_id as paymentID, 
+                      orders.order_total as orderTotal, 
+                      orders.order_status as orderStatus 
+                      FROM orders 
+                      INNER JOIN users 
+                      ON orders.user_id = users.user_id 
+                      INNER JOIN shippings 
+                      ON orders.shipping_id = shippings.shipping_id 
+                      INNER JOIN payments 
+                      ON orders.payment_id = payments.payment_id
+                      INNER JOIN riders
+                      ON orders.rider_id = riders.rider_id
+                      WHERE
+                      orders.order_status = 2
+                      AND payments.payment_status = 1
+                      ORDER BY orders.created_at ASC;");
+
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
+
+  public function getAllCancelledOrders()
+  {
+    $this->db->query("SELECT *, 
+                      orders.order_id as orderID, 
+                      users.user_id as userID, 
+                      shippings.shipping_id as shippingID, 
+                      payments.payment_id as paymentID, 
+                      orders.order_total as orderTotal, 
+                      orders.order_status as orderStatus 
+                      FROM orders 
+                      INNER JOIN users 
+                      ON orders.user_id = users.user_id 
+                      INNER JOIN shippings 
+                      ON orders.shipping_id = shippings.shipping_id 
+                      INNER JOIN payments 
+                      ON orders.payment_id = payments.payment_id
+                      WHERE
+                      orders.order_status = 3
+                      AND payments.payment_status = 2
+                      ORDER BY orders.created_at ASC;");
+
+    $results = $this->db->resultSet();
+
+    return $results;
   }
 }

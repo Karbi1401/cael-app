@@ -26,9 +26,24 @@
             </a>
           </li>
           <li>
-            <a href="<?php echo URLROOT; ?>/Orders" class="collapsible-header waves-effect">
-              <i class="fas fa-shopping-cart"></i> Orders
+            <a href="<?php echo URLROOT; ?>/admins/riders" class="collapsible-header waves-effect">
+              <i class="fas fa-motorcycle"></i> Riders
             </a>
+          </li>
+          <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-shopping-cart"></i>
+              Orders<i class="fas fa-angle-down rotate-icon"></i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="<?php echo URLROOT; ?>/orders" class="collapsible-header waves-effect">Pending Orders</a>
+                </li>
+                <li><a href="<?php echo URLROOT; ?>/orders/onDelivery" class="collapsible-header waves-effect">On Delivery</a>
+                </li>
+                <li><a href="<?php echo URLROOT; ?>/orders/completed" class="collapsible-header waves-effect">Completed Orders</a>
+                </li>
+                <li><a href="<?php echo URLROOT; ?>/orders/cancelled" class="collapsible-header waves-effect">Cancelled Orders</a>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </li>
