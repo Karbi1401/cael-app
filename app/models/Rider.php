@@ -22,6 +22,7 @@ class Rider
     }
   }
 
+
   public function addRider($data)
   {
     $this->db->query('INSERT INTO riders
@@ -96,7 +97,7 @@ class Rider
   public function editRider($data)
   {
     $this->db->query("UPDATE riders 
-                      SET rider_username = :rider_username,
+                      SET
                       rider_first_name = :rider_first_name,
                       rider_last_name = :rider_last_name,
                       rider_email = :rider_email,
@@ -106,7 +107,6 @@ class Rider
                       WHERE rider_id = :rider_id");
 
     $this->db->bind(':rider_id', $data['rider_id']);
-    $this->db->bind(':rider_username', $data['username']);
     $this->db->bind(':rider_first_name', $data['first_name']);
     $this->db->bind(':rider_last_name', $data['last_name']);
     $this->db->bind(':rider_email', $data['email']);
@@ -115,6 +115,22 @@ class Rider
     $this->db->bind(':rider_city', $data['city']);
 
     // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function editRiderImage($data)
+  {
+    $this->db->query('UPDATE riders SET rider_image = :rider_image WHERE rider_id = :rider_id');
+
+    $this->db->bind(':rider_image', $data['rider_image']);
+    $this->db->bind(':rider_id', $data['id']);
+
+    $row = $this->db->single();
+
     if ($this->db->execute()) {
       return true;
     } else {

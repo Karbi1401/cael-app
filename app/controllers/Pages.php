@@ -10,7 +10,7 @@ class Pages extends Controller
 
   public function index()
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins/index');
     } else {
       $this->view('pages/index');
@@ -19,7 +19,7 @@ class Pages extends Controller
 
   public function menu()
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins/index');
     } else {
       if (isset($_SESSION['user_id'])) {
@@ -62,7 +62,7 @@ class Pages extends Controller
 
   public function category($id)
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins/index');
     } else {
       $categories = $this->categoryModel->getCategoryByStatus();
@@ -79,7 +79,7 @@ class Pages extends Controller
 
   public function details($id)
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins/index');
     } else {
       $products = $this->productModel->getProductByID($id);

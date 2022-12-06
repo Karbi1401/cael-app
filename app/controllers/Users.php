@@ -9,9 +9,9 @@ class Users extends Controller
 
   public function signup()
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins/index');
-    } elseif (Auth::adminGuest() || Auth::userGuest()) {
+    } elseif (Auth::adminGuest() || Auth::userGuest() || Auth::employeeGuest()) {
       // Check for POST
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Process form
@@ -177,9 +177,9 @@ class Users extends Controller
 
   public function login()
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins/index');
-    } elseif (Auth::adminGuest() || Auth::userGuest()) {
+    } elseif (Auth::adminGuest() || Auth::userGuest() || Auth::employeeGuest()) {
       // Check for POST
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Process form
@@ -211,9 +211,11 @@ class Users extends Controller
           $loggedInUser = $this->userModel->login($data['username'], $data['password']);
           if ($loggedInUser) {
             $this->createUserSession($loggedInUser);
-            if ($loggedInUser->user_role === 'user') {
+            if ($loggedInUser->user_role == 'employee') {
+              redirect('admins/index');
+            } elseif ($loggedInUser->user_role == 'user') {
               redirect('pages/index');
-            } elseif ($loggedInUser->user_role === 'admin') {
+            } elseif ($loggedInUser->user_role == 'admin') {
               redirect('admins/index');
             }
           } else {
@@ -273,7 +275,9 @@ class Users extends Controller
 
   public function profile($user_id)
   {
-    if ($_SESSION['user_id'] == $user_id) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
+      redirect('admins/index');
+    } elseif ($_SESSION['user_id'] == $user_id) {
       $users = $this->userModel->getUserByID($user_id);
 
       $data = [
@@ -288,7 +292,9 @@ class Users extends Controller
 
   public function avatar($user_id)
   {
-    if ($_SESSION['user_id'] == $user_id) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
+      redirect('admins/index');
+    } elseif ($_SESSION['user_id'] == $user_id) {
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $users = $this->userModel->getUserByID($user_id);
 
@@ -335,7 +341,9 @@ class Users extends Controller
 
   public function edit($user_id)
   {
-    if ($_SESSION['user_id'] == $user_id) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
+      redirect('admins/index');
+    } elseif ($_SESSION['user_id'] == $user_id) {
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $data = [
           'user_id' => $user_id,

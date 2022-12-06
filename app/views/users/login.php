@@ -34,13 +34,16 @@
 
                         <div class="col-12 mb-3">
                           <label for="password">Password</label>
-                          <input type="password" id="password" class="form-control <?php echo (!empty($data['password_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['password']; ?>" name="password" data-toggle = "password">
+                          <input type="password" id="password" class="form-control <?php echo (!empty($data['password_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['password']; ?>" name="password" data-toggle="password">
                           <span class="invalid-feedback"><?php echo $data['password_err']; ?></span>
-                      <!-- Default unchecked -->
-                      <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                          <label class="custom-control-label" for="defaultUnchecked">Show Password</label>
-                      </div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                          <!-- Default unchecked -->
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                            <label class="custom-control-label" for="defaultUnchecked">Show Password</label>
+                          </div>
                         </div>
                       </div>
                       <div class="pt-1 mb-3 text-center">
@@ -62,12 +65,12 @@
 
 <script>
   document.getElementById('defaultUnchecked').onclick = function() {
-    if ( this.checked ) {
-       document.getElementById('password').type = "text";
+    if (this.checked) {
+      document.getElementById('password').type = "text";
     } else {
-       document.getElementById('password').type = "password";
+      document.getElementById('password').type = "password";
     }
-};
+  };
 </script>
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>

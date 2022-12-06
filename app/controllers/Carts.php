@@ -10,7 +10,7 @@ class Carts extends Controller
 
   public function index()
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins/index');
     } elseif (Auth::userAuth()) {
       $cartItems = 0;
@@ -39,7 +39,7 @@ class Carts extends Controller
 
   public function add($id, $price)
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins/index');
     } elseif (Auth::userAuth()) {
       $data = [
@@ -64,7 +64,7 @@ class Carts extends Controller
 
   public function delete($id)
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins/index');
     } elseif (Auth::userAuth()) {
       $delete =  $this->cartModel->deleteCartItem($id);
@@ -79,7 +79,7 @@ class Carts extends Controller
 
   public function updateQuantity($id)
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins/index');
     } elseif (Auth::userAuth()) {
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -271,7 +271,7 @@ class Carts extends Controller
 
         $this->view('carts/checkout', $data);
       }
-    } elseif (Auth::adminAuth()) {
+    } elseif (Auth::adminAuth() || Auth::employeeAuth()) {
       redirect('admins');
     } else {
       redirect('pages');

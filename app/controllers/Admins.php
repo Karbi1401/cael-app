@@ -8,7 +8,7 @@ class Admins extends Controller
 
   public function index()
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       $this->view('admins/index');
     } else {
       redirect('pages');

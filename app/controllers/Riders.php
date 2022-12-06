@@ -144,12 +144,10 @@ class Riders extends Controller
         'rider_id' => $rider_id,
         'first_name' => trim($_POST['first_name']),
         'last_name' => trim($_POST['last_name']),
-        'username' => trim($_POST['username']),
         'email' => trim($_POST['email']),
         'contact_number' => trim($_POST['contact_number']),
         'address' => trim($_POST['address']),
         'city' => trim($_POST['city']),
-        'username_err' => '',
         'first_name_err' => '',
         'last_name_err' => '',
         'email_err' => '',
@@ -234,12 +232,10 @@ class Riders extends Controller
         'rider_id' => $riders->rider_id,
         'first_name' => $riders->rider_first_name,
         'last_name' => $riders->rider_last_name,
-        'username' => $riders->rider_username,
         'email' => $riders->rider_email,
         'contact_number' => $riders->rider_contact,
         'address' => $riders->rider_address,
         'city' => $riders->rider_city,
-        'username_err' => '',
         'first_name_err' => '',
         'last_name_err' => '',
         'email_err' => '',
@@ -249,6 +245,56 @@ class Riders extends Controller
       ];
 
       $this->view('riders/edit', $data);
+    }
+  }
+
+  public function editRiderImage($id)
+  {
+    if (Auth::adminAuth()) {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $riders = $this->riderModel->getRiderByID($id);
+
+        $data = [
+          'id' => $id,
+          'rider' => $riders->rider_image,
+          'rider_image' => $_FILES['image']['name'],
+          'rider_image_temp' => $_FILES['image']['tmp_name'],
+          'rider_image_err' => ''
+        ];
+
+        if (empty($data['rider_image'])) {
+          $data['rider_image_err'] = "Please select an image";
+        }
+
+        if (empty($data['rider_image_err'])) {
+          $uploaddir = dirname(APPROOT) . '\public\img\\';
+          move_uploaded_file($data['rider_image_temp'], $uploaddir . $data['rider_image']);
+          if ($this->riderModel->editRiderImage($data)) {
+            success('rider_message', '<i class="fa-solid fa-check mr-2"></i>Rider Image Successfuly Updated!');
+            redirect('riders');
+          } else {
+            die('Something went wrong');
+          }
+        } else {
+          $this->view('riders/edit_rider_image', $data);
+        }
+
+        $this->view('riders/edit_rider_image', $data);
+      } else {
+        $riders = $this->riderModel->getRiderByID($id);
+
+        $data = [
+          'id' => $id,
+          'rider' => $riders->rider_image,
+          'rider_image' => '',
+          'rider_image_temp' => '',
+          'rider_image_err' => '',
+        ];
+
+        $this->view('riders/edit_rider_image', $data);
+      }
+    } else {
+      redirect('pages');
     }
   }
 
