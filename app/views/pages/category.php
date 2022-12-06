@@ -39,12 +39,13 @@
                   </a>
                   <div class="card-body">
                     <h5 class="card-title mb-1 dark-grey-text"><strong><?php echo $product->product_name; ?></strong></h5>
-                    <div class="card-footer pb-0">
+                    <div class="card-footer p-1">
                       <div class="row mb-0">
-                        <span class="float-left"><strong>&#8369;<?php echo $product->product_price; ?></strong></span>
-                        <span class="float-right">
-                          <a href="<?php echo URLROOT; ?>/carts/add/<?php echo $product->product_id; ?>/<?php echo $product->product_price; ?>" data-toggle="tooltip" data-placement="top" title="Add to Cart"><i class="fa-solid fa-cart-plus ml-3 span-orange"></i></a>
-                        </span>
+                        <div class="d-flex justify-content-between">
+                          <p class="mb-0"><strong>&#8369;<?php echo $product->product_price; ?></strong></p>
+                          <p class="mb-0"><a href="<?php echo URLROOT; ?>/carts/add/<?php echo $product->product_id; ?>/<?php echo $product->product_price; ?>" data-toggle="tooltip" data-placement="top" title="Add to Cart"><i class="fa-solid fa-cart-plus span-orange"></i></a></p>
+
+                        </div>
                       </div>
                     </div>
                   </div>
