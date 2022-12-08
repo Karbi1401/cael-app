@@ -45,7 +45,6 @@
                         <div class="d-flex justify-content-between">
                           <p class="mb-0"><strong>&#8369;<?php echo $product->product_price; ?></strong></p>
                           <p class="mb-0"><a href="<?php echo URLROOT; ?>/carts/add/<?php echo $product->product_id; ?>/<?php echo $product->product_price; ?>" data-toggle="tooltip" data-placement="top" title="Add to Cart"><i class="fa-solid fa-cart-plus span-orange"></i></a></p>
-
                         </div>
                       </div>
                     </div>

@@ -13,26 +13,53 @@
           <?php if ($_SESSION['user_role'] == 'admin') : ?>
             <li>
               <a href="<?php echo URLROOT; ?>/admins" class="collapsible-header waves-effect">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-tachometer"></i></div>
+                  <div class="col">Dashboard</div>
+                </div>
               </a>
             </li>
             <li>
               <a href="<?php echo URLROOT; ?>/categories" class="collapsible-header waves-effect">
-                <i class="fas fa-list"></i> Categories
+                <div class="row">
+                  <div class="col-1">
+                    <i class="fas fa-list"></i>
+                  </div>
+                  <div class="col">Categories</div>
+                </div>
               </a>
             </li>
             <li>
               <a href="<?php echo URLROOT; ?>/products" class="collapsible-header waves-effect">
-                <i class="fas fa-box"></i> Products
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-box"></i></div>
+                  <div class="col">Products</div>
+                </div>
               </a>
             </li>
             <li>
               <a href="<?php echo URLROOT; ?>/riders" class="collapsible-header waves-effect">
-                <i class="fas fa-motorcycle"></i> Riders
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-motorcycle"></i></div>
+                  <div class="col">Riders</div>
+                </div>
               </a>
             </li>
-            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-shopping-cart"></i>
-                Orders<i class="fas fa-angle-down rotate-icon"></i></a>
+            <li>
+              <a href="<?php echo URLROOT; ?>/admins/users" class="collapsible-header waves-effect">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-user"></i></div>
+                  <div class="col">Users</div>
+                </div>
+              </a>
+            </li>
+            <li><a class="collapsible-header waves-effect arrow-r">
+                <div class="row">
+                  <div class="col-1"><i class="fas fa-cart-shopping"></i></div>
+                  <div class="col">Orders</div>
+                  <i class="fas fa-angle-down rotate-icon"></i>
+                </div>
+              </a>
               <div class="collapsible-body">
                 <ul>
                   <li><a href="<?php echo URLROOT; ?>/orders" class="collapsible-header waves-effect">Pending Orders</a>
