@@ -49,7 +49,7 @@
                       <div class="pt-1 mb-3 text-center">
                         <button class="btn btn-orange btn-block" type="submit" value="Login">Login</button>
                       </div>
-                      <a class="small span-orange" href="#!">Forgot password?</a>
+                      <a class="small span-orange" href="<?php echo URLROOT; ?>/users/forgot">Forgot password?</a>
                       <p class="mb-5 pb-lg-2">Don't have an account? <a href="<?php echo URLROOT; ?>/users/signup" class="span-orange">Register here</a></p>
                     </div>
                   </form>

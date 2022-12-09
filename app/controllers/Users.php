@@ -468,4 +468,92 @@ class Users extends Controller
       redirect('pages');
     }
   }
+
+  public function forgot()
+  {
+    if (Auth::adminAuth()) {
+      redirect('admin/dashboard');
+    } else {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $length = 50;
+        $token = bin2hex(openssl_random_pseudo_bytes($length));
+        $data = [
+          'email' => filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),
+          'token' => $token,
+          'email_err' => ''
+        ];
+
+        if (empty($data['email'])) {
+          $data['email_err'] = 'Please input you email';
+        }
+
+        if (empty($data['email_err'])) {
+          if ($this->userModel->forgotPassword($data['email'], $data['token'])) {
+            Email::sendPass($data['email'], $data['token']);
+            success('user_message', '<i class="fa-solid fa-check mr-2"></i>Please check your email for password reset instructions');
+          } else {
+            die('Something went wrong');
+          }
+        } else {
+          $this->view('users/forgot', $data);
+        }
+      } else {
+        $data = [
+          'email' => '',
+          'email_err' => ''
+        ];
+
+        $this->view('users/forgot', $data);
+      }
+    }
+  }
+
+  public function reset($token)
+  {
+    if (Auth::adminAuth()) {
+      redirect('admin/dashboard');
+    } else {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $data = [
+          'password' => $_POST['password'],
+          'password_err' => '',
+          'confirm_password' => $_POST['confirm_password'],
+          'confirm_password_err' => '',
+          'token' => $token
+        ];
+
+        if (empty($data['password'])) {
+          $data['password_err'] = 'Please new password';
+        }
+
+        if (empty($data['confirm_password'])) {
+          $data['confirm_password_err'] = 'Please new confirm password';
+        }
+
+        if ($data['password'] !== $data['confirm_password']) {
+          $data['password_err'] = 'Passwords do not match';
+          $data['confirm_password_err'] = 'Passwords do not match';
+        }
+
+        if (empty($data['password_err'] && $data['confirm_password_err'])) {
+          $hashed_password = password_hash($data['password'], PASSWORD_DEFAULT);
+          if ($this->userModel->resetPassword($hashed_password, $data['token'])) {
+            success('user_message', 'Password reset successfully');
+            redirect('users/login');
+          } else {
+            die('Something went wrong');
+          }
+        }
+      } else {
+        $data = [
+          'password' => '',
+          'password_err' => '',
+          'confirm_password' => '',
+          'confirm_password_err' => '',
+          'token' => $token
+        ];
+        $this->view('users/reset', $data);
+      }
+    }
+  }
 }

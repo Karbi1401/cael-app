@@ -66,7 +66,7 @@
                         </a>
                         <a href="<?php echo URLROOT; ?>/orders/assignRider/<?php echo $order->order_id; ?>"><i class="fa-solid fa-motorcycle teal-text" data-toggle="tooltip" data-placement="top" title="Assign Rider"></i>
                         </a>
-                        <a onclick="deleteProduct()" href="<?php echo URLROOT; ?>/orders/cancelOrder/<?php echo $order->order_id; ?>/<?php echo $order->payment_id; ?>"><i class="fa-solid fa-x red-text" data-toggle="tooltip" data-placement="top" title="Cancel Order"></i></a>
+                        <a onclick="cancelOrder()" href="<?php echo URLROOT; ?>/orders/cancelOrder/<?php echo $order->order_id; ?>/<?php echo $order->payment_id; ?>"><i class="fa-solid fa-x red-text" data-toggle="tooltip" data-placement="top" title="Cancel Order"></i></a>
                       </div>
                     </td>
                   </tr>

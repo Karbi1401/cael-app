@@ -60,6 +60,20 @@
     }
   }
 
+  function deleteUser() {
+    var result = confirm("Are you sure you want to delete the user information?");
+    if (result == false) {
+      event.preventDefault();
+    }
+  }
+
+  function cancelOrder() {
+    var result = confirm("Are you sure you want to cancel the order?");
+    if (result == false) {
+      event.preventDefault();
+    }
+  }
+
   $(document).ready(function() {
     $(".mdb-select").materialSelect();
   });

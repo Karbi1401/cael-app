@@ -5,7 +5,7 @@
 <main class="vh-100">
   <div class="container-fluid">
     <div class="col-md-12">
-      <?php success('rider_message'); ?>
+      <?php success('user_message'); ?>
       <h5 class="my-4 dark-grey-text font-weight-bold"><i class="fas fa-user mr-2"></i> Users</h5>
       <div class="card">
         <div class="card-body">
@@ -48,11 +48,11 @@
                       <div class="d-flex justify-content-between">
                         <a href="<?php echo URLROOT; ?>/admins/userDetails/<?php echo $user->user_id; ?>"><i class="fa-solid fa-info blue-text" data-toggle="tooltip" data-placement="top" title="View User Contact Information"></i>
                         </a>
-                        <a href="<?php echo URLROOT; ?>/products/editProductImage/<?php echo $user->user_id; ?>"><i class="fa-solid fa-image teal-text" data-toggle="tooltip" data-placement="top" title="Update User Image"></i>
+                        <a href="<?php echo URLROOT; ?>/admins/editUserImage/<?php echo $user->user_id; ?>"><i class="fa-solid fa-image teal-text" data-toggle="tooltip" data-placement="top" title="Update User Image"></i>
                         </a>
                         <a href="<?php echo URLROOT; ?>/admins/editUser/<?php echo $user->user_id; ?>"><i class="fa-solid fa-pen-to-square teal-text" data-toggle="tooltip" data-placement="top" title="Update User Information"></i>
                         </a>
-                        <a onclick="deleteProduct()" href="<?php echo URLROOT; ?>/products/delete/<?php echo $user->user_id; ?>"><i class="fa-solid fa-trash red-text" data-toggle="tooltip" data-placement="top" title="Delete User Information"></i></a>
+                        <a onclick="deleteUser()" href="<?php echo URLROOT; ?>/admins/deleteUser/<?php echo $user->user_id; ?>"><i class="fa-solid fa-trash red-text" data-toggle="tooltip" data-placement="top" title="Delete User Information"></i></a>
                       </div>
                     </td>
                   </tr>

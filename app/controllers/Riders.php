@@ -278,8 +278,6 @@ class Riders extends Controller
         } else {
           $this->view('riders/edit_rider_image', $data);
         }
-
-        $this->view('riders/edit_rider_image', $data);
       } else {
         $riders = $this->riderModel->getRiderByID($id);
 

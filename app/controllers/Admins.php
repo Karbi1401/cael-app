@@ -341,4 +341,67 @@ class Admins extends Controller
       redirect('pages');
     }
   }
+
+  public function deleteUser($user_id)
+  {
+    if (Auth::adminAuth()) {
+      if ($this->userModel->deleteUser($user_id)) {
+        success('user_message', '<i class="fa-solid fa-check mr-2"></i>User Information Successfuly Removed!');
+        redirect('admins/users');
+      } else {
+        die('Something went wrong');
+        redirect('admins/users');
+      }
+    } else {
+      redirect('pages');
+    }
+  }
+
+  public function editUserImage($id)
+  {
+    if (Auth::adminAuth()) {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $users = $this->userModel->getUserByID($id);
+
+        $data = [
+          'id' => $id,
+          'user' => $users->user_image,
+          'user_image' => $_FILES['image']['name'],
+          'user_image_temp' => $_FILES['image']['tmp_name'],
+          'user_image_err' => ''
+        ];
+
+        if (empty($data['user_image'])) {
+          $data['user_image_err'] = "Please select an image";
+        }
+
+        if (empty($data['user_image_err'])) {
+          $uploaddir = dirname(APPROOT) . '\public\img\\';
+          move_uploaded_file($data['user_image_temp'], $uploaddir . $data['user_image']);
+          if ($this->riderModel->editRiderImage($data)) {
+            success('user_message', '<i class="fa-solid fa-check mr-2"></i>User Image Successfuly Updated!');
+            redirect('admins/users');
+          } else {
+            die('Something went wrong');
+          }
+        } else {
+          $this->view('admins/users/edit_user_image', $data);
+        }
+      } else {
+        $users = $this->userModel->getUserByID($id);
+
+        $data = [
+          'id' => $id,
+          'user' => $users->user_image,
+          'user_image' => '',
+          'user_image_temp' => '',
+          'user_image_err' => '',
+        ];
+
+        $this->view('admins/users/edit_user_image', $data);
+      }
+    } else {
+      redirect('pages');
+    }
+  }
 }

@@ -88,6 +88,9 @@ class Orders extends Controller
 
       $this->orderModel->orderDeliver($order_id);
 
+      $orders = $this->orderModel->getAllOrderDetail($order_id);
+      Email::sendOrdersOnDeliveryToUser($orders);
+
       success('order_message', 'The order is on delivery!');
 
       redirect('orders');
@@ -148,9 +151,10 @@ class Orders extends Controller
     if (Auth::adminAuth() || Auth::employeeAuth()) {
       $orders = $this->orderModel->orderComplete($order_id);
       $payments = $this->paymentModel->paymentComplete($payment_id);
-      //$complete_orders = $this->orderModel->completeOrdersByID($order_id);
 
-      //Email::sendOrdersCompleteToUser($complete_orders);
+      $orders = $this->orderModel->completeOrdersByID($order_id);
+
+      Email::sendOrdersCompleteToUser($orders);
 
       if ($orders && $payments) {
         success('order_message', 'Order has been completed!');
@@ -166,9 +170,10 @@ class Orders extends Controller
     if (Auth::adminAuth() || Auth::employeeAuth()) {
       $orders = $this->orderModel->orderCancel($order_id);
       $payments = $this->paymentModel->paymentCancel($payment_id);
-      //$cancelled_orders = $this->orderModel->cancelledOrdersByID($order_id);
 
-      //Email::sendOrdersCancelledToUser($cancelled_orders);
+      $orders = $this->orderModel->cancelledOrdersByID($order_id);
+
+      Email::sendOrdersCancelledToUser($orders);
 
       if ($orders && $payments) {
         danger('order_message', 'Order has been cancelled!');

@@ -14,7 +14,7 @@ class Email
   {
     foreach ($orders as $order) {
       $email = $order->user_email;
-      $name = $order->user_name;
+      $name = $order->user_first_name;
       $orderTotal = $order->order_total;
     }
 
@@ -27,39 +27,43 @@ class Email
       $mail->Host       = 'smtp.gmail.com';
       $mail->SMTPAuth   = true;
       $mail->Username   = 'kurtcarveycadenas1401@gmail.com';
-      $mail->Password   = 'pyharfbmmugdbqaj';
+      $mail->Password   = 'fzkcesqvnuiantku';
       $mail->SMTPSecure = 'ssl';
       $mail->Port       = 465;
 
       //Recipients
-      $mail->setFrom('kurtcarveycadenas1401@gmail.com', "Cael's Party Mania Admin");
+      $mail->setFrom('kurtcarveycadenas1401@gmail.com', "Cael's Delivery Admin");
       $mail->addAddress($email, $name);
 
       //Content
       $mail->isHTML(true);
       $mail->Subject = 'Your Orders';
       $body = "<table>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Food Name</th>
-                  <th>Food Price</th>
-                  <th>Food Quantity</th>
-                  <th>Billing Name</th>
-                  <th>Billing Address</th>
-                  <th>Billing City</th>
-                </tr>
+                  <thead>
+                      <tr>
+                        <th>Order ID</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Product Quantity</th>
+                        <th>Billing Name</th>
+                        <th>Billing Address</th>
+                        <th>Billing City</th>
+                      </tr>
+                  </thead>
               ";
       foreach ($orders as $order) {
         $body .= "
-                 <tr>
-                    <td>$order->order_id</td>
-                    <td>$order->food_name</td>
-                    <td>&#8369;$order->food_price</td>
-                    <td>$order->food_quantity</td>
-                    <td>$order->shipping_name</td>
-                    <td>$order->shipping_address</td>
-                    <td>$order->shipping_city</td>
-                 </tr>
+                 <tbody>
+                    <tr>
+                        <td>$order->order_id</td>
+                        <td>$order->product_name</td>
+                        <td>&#8369;$order->product_price</td>
+                        <td>$order->product_quantity</td>
+                        <td>$order->shipping_name</td>
+                        <td>$order->shipping_address</td>
+                        <td>$order->shipping_city</td>
+                    </tr>
+                 </tbody>
                  ";
       }
       $body .= "
@@ -77,12 +81,12 @@ class Email
     }
   }
 
-  public static function sendOrdersCompleteToUser($complete_orders)
+  public static function sendOrdersOnDeliveryToUser($orders)
   {
-    foreach ($complete_orders as $complete_order) {
-      $email = $complete_order->user_email;
-      $name = $complete_order->user_name;
-      $orderTotal = $complete_order->order_total;
+    foreach ($orders as $order) {
+      $email = $order->user_email;
+      $name = $order->user_first_name;
+      $orderTotal = $order->order_total;
     }
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
@@ -93,47 +97,51 @@ class Email
       $mail->Host       = 'smtp.gmail.com';
       $mail->SMTPAuth   = true;
       $mail->Username   = 'kurtcarveycadenas1401@gmail.com';
-      $mail->Password   = 'pyharfbmmugdbqaj';
+      $mail->Password   = 'fzkcesqvnuiantku';
       $mail->SMTPSecure = 'ssl';
       $mail->Port       = 465;
 
       //Recipients
-      $mail->setFrom('kurtcarveycadenas1401@gmail.com', "Cael's Party Mania Admin");
+      $mail->setFrom('kurtcarveycadenas1401@gmail.com', "Cael's Delivery Admin");
       $mail->addAddress($email, $name);
 
       //Content
       $mail->isHTML(true);
-      $mail->Subject = 'Orders Completed';
+      $mail->Subject = 'Orders On Delivery';
       $body = "<table>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Food Name</th>
-                  <th>Food Price</th>
-                  <th>Food Quantity</th>
-                  <th>Billing Name</th>
-                  <th>Billing Address</th>
-                  <th>Billing City</th>
-                  <th>Payment Method</th>
-                </tr>
+                <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Product Name</th>
+                      <th>Product Price</th>
+                      <th>Product Quantity</th>
+                      <th>Billing Name</th>
+                      <th>Billing Address</th>
+                      <th>Billing City</th>
+                      <th>Payment Method</th>
+                    </tr>
+                  </thead>
               ";
-      foreach ($complete_orders as $complete_order) {
+      foreach ($orders as $order) {
         $body .= "
-                 <tr>
-                    <td>$complete_order->order_id</td>
-                    <td>$complete_order->food_name</td>
-                    <td>$complete_order->food_price</td>
-                    <td>$complete_order->food_quantity</td>
-                    <td>$complete_order->shipping_name</td>
-                    <td>$complete_order->shipping_address</td>
-                    <td>$complete_order->shipping_city</td>
-                    <td>$complete_order->payment_method</td>
-                 </tr>
+                 <tbody>
+                    <tr>
+                        <td>$order->order_id</td>
+                        <td>$order->product_name</td>
+                        <td>$order->product_price</td>
+                        <td>$order->product_quantity</td>
+                        <td>$order->shipping_name</td>
+                        <td>$order->shipping_address</td>
+                        <td>$order->shipping_city</td>
+                        <td>$order->payment_method</td>
+                    </tr>
                  ";
       }
       $body .= "
-               <tr>
-                  <td>Total: &#8369;$orderTotal</td>
-               </tr>
+                    <tr>
+                        <td>Total: &#8369;$orderTotal</td>
+                    </tr>
+                </tbody>
                ";
       $mail->Body = $body . "</table>
                              <p>
@@ -151,12 +159,12 @@ class Email
     }
   }
 
-  public static function sendOrdersCancelledToUser($complete_orders)
+  public static function sendOrdersCompleteToUser($orders)
   {
-    foreach ($complete_orders as $complete_order) {
-      $email = $complete_order->user_email;
-      $name = $complete_order->user_name;
-      $orderTotal = $complete_order->order_total;
+    foreach ($orders as $order) {
+      $email = $order->user_email;
+      $name = $order->user_first_name;
+      $orderTotal = $order->order_total;
     }
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
@@ -167,41 +175,123 @@ class Email
       $mail->Host       = 'smtp.gmail.com';
       $mail->SMTPAuth   = true;
       $mail->Username   = 'kurtcarveycadenas1401@gmail.com';
-      $mail->Password   = 'pyharfbmmugdbqaj';
+      $mail->Password   = 'fzkcesqvnuiantku';
       $mail->SMTPSecure = 'ssl';
       $mail->Port       = 465;
 
       //Recipients
-      $mail->setFrom('kurtcarveycadenas1401@gmail.com', "Cael's Party Mania Admin");
+      $mail->setFrom('kurtcarveycadenas1401@gmail.com', "Cael's Delivery Admin");
+      $mail->addAddress($email, $name);
+
+      //Content
+      $mail->isHTML(true);
+      $mail->Subject = 'Orders Completed';
+      $body = "<table>
+                <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Product Name</th>
+                      <th>Product Price</th>
+                      <th>Product Quantity</th>
+                      <th>Billing Name</th>
+                      <th>Billing Address</th>
+                      <th>Billing City</th>
+                      <th>Payment Method</th>
+                    </tr>
+                  </thead>
+              ";
+      foreach ($orders as $order) {
+        $body .= "
+                 <tbody>
+                    <tr>
+                        <td>$order->order_id</td>
+                        <td>$order->product_name</td>
+                        <td>$order->product_price</td>
+                        <td>$order->product_quantity</td>
+                        <td>$order->shipping_name</td>
+                        <td>$order->shipping_address</td>
+                        <td>$order->shipping_city</td>
+                        <td>$order->payment_method</td>
+                    </tr>
+                 ";
+      }
+      $body .= "
+                    <tr>
+                        <td>Total: &#8369;$orderTotal</td>
+                    </tr>
+                </tbody>
+               ";
+      $mail->Body = $body . "</table>
+                             <p>
+                                <b>Thank you for ordering at Cael's Catering, We are please to serve healthy nutritious food</b>
+                             </p>
+                             <p>
+                                <b>If you have time kindly please rate us on our Faceebook Page: https://www.facebook.com/AnalynPabloVizmanos</b>
+                             </p>";
+      $mail->AltBody = '';
+
+      $mail->send();
+      echo 'Message has been sent';
+    } catch (Exception $e) {
+      echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+  }
+
+  public static function sendOrdersCancelledToUser($orders)
+  {
+    foreach ($orders as $order) {
+      $email = $order->user_email;
+      $name = $order->user_first_name;
+      $orderTotal = $order->order_total;
+    }
+    //Create an instance; passing `true` enables exceptions
+    $mail = new PHPMailer(true);
+    try {
+      //Server settings
+      //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                    
+      $mail->isSMTP();
+      $mail->Host       = 'smtp.gmail.com';
+      $mail->SMTPAuth   = true;
+      $mail->Username   = 'kurtcarveycadenas1401@gmail.com';
+      $mail->Password   = 'fzkcesqvnuiantku';
+      $mail->SMTPSecure = 'ssl';
+      $mail->Port       = 465;
+
+      //Recipients
+      $mail->setFrom('kurtcarveycadenas1401@gmail.com', "Cael's Delivery Admin");
       $mail->addAddress($email, $name);
 
       //Content
       $mail->isHTML(true);
       $mail->Subject = 'Orders Cancelled';
       $body = "<table>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Food Name</th>
-                  <th>Food Price</th>
-                  <th>Food Quantity</th>
-                  <th>Billing Name</th>
-                  <th>Billing Address</th>
-                  <th>Billing City</th>
-                  <th>Payment Method</th>
-                </tr>
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Product Name</th>
+                      <th>Product Price</th>
+                      <th>Product Quantity</th>
+                      <th>Billing Name</th>
+                      <th>Billing Address</th>
+                      <th>Billing City</th>
+                      <th>Payment Method</th>
+                    </tr>
+                  </thead>
               ";
-      foreach ($complete_orders as $complete_order) {
+      foreach ($orders as $order) {
         $body .= "
-                 <tr>
-                    <td>$complete_order->order_id</td>
-                    <td>$complete_order->food_name</td>
-                    <td>$complete_order->food_price</td>
-                    <td>$complete_order->food_quantity</td>
-                    <td>$complete_order->shipping_name</td>
-                    <td>$complete_order->shipping_address</td>
-                    <td>$complete_order->shipping_city</td>
-                    <td>$complete_order->payment_method</td>
-                 </tr>
+                 <tbody>
+                    <tr>
+                        <td>$order->order_id</td>
+                        <td>$order->product_name</td>
+                        <td>$order->product_price</td>
+                        <td>$order->product_quantity</td>
+                        <td>$order->shipping_name</td>
+                        <td>$order->shipping_address</td>
+                        <td>$order->shipping_city</td>
+                        <td>$order->payment_method</td>
+                    </tr>
+                 </tbody>
                  ";
       }
       $body .= "
@@ -236,12 +326,12 @@ class Email
       $mail->Host       = 'smtp.gmail.com';
       $mail->SMTPAuth   = true;
       $mail->Username   = 'kurtcarveycadenas1401@gmail.com';
-      $mail->Password   = 'pyharfbmmugdbqaj';
+      $mail->Password   = 'fzkcesqvnuiantku';
       $mail->SMTPSecure = 'ssl';
       $mail->Port       = 465;
 
       //Recipients
-      $mail->setFrom('kurtcarveycadenas1401@gmail.com', "Cael's Party Mania Admin");
+      $mail->setFrom('kurtcarveycadenas1401@gmail.com', "Cael's Delivery Admin");
       $mail->addAddress($email);
 
       //Content

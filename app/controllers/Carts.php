@@ -230,7 +230,7 @@ class Carts extends Controller
           }
 
           $orders = $this->orderModel->getAllOrderDetail($order_id);
-          // Email::sendEmailOrdersToUser($orders);
+          Email::sendEmailOrdersToUser($orders);
 
           $this->cartModel->clearCart();
 

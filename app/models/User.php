@@ -274,4 +274,64 @@ class User
       return false;
     }
   }
+
+  public function deleteUser($user_id)
+  {
+    $this->db->query('DELETE FROM users WHERE user_id = :id');
+
+    $this->db->bind(':id', $user_id);
+
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function forgotPassword($email, $token)
+  {
+    $this->db->query("SELECT user_id FROM users 
+                      WHERE user_email = :user_email");
+    $this->db->bind(':user_email', $email);
+    $this->db->execute();
+    $row = $this->db->rowCount();
+    if ($row != 0) {
+      $this->db->query("UPDATE users SET token = :token, 
+                        token_expire = DATE_ADD(NOW(), INTERVAL 60 MINUTE)
+                        WHERE user_email = :user_email");
+      $this->db->bind(':user_email', $email);
+      $this->db->bind(':token', $token);
+      if ($this->db->execute()) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  public function resetPassword($password, $token)
+  {
+    $this->db->query("SELECT user_id FROM users 
+                      WHERE token = :token 
+                      AND token_expire > NOW()");
+    $this->db->bind(':token', $token);
+    $this->db->execute();
+    $row = $this->db->rowCount();
+    if ($row > 0) {
+      $this->db->query("UPDATE users 
+                        SET user_password = :user_password
+                        WHERE token = :token");
+      $this->db->bind(':token', $token);
+      $this->db->bind(':user_password', $password);
+      if ($this->db->execute()) {
+        return true;
+      } else {
+        return false;
+      };
+    } else {
+      return false;
+    }
+  }
 }
