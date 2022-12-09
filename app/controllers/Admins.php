@@ -33,5 +33,15 @@ class Admins extends Controller
 
   public function addUser()
   {
+    if (Auth::adminAuth()) {
+
+      $data = [
+        ''
+      ];
+
+      $this->view('admins/users/add', $data);
+    } else {
+      redirect('pages');
+    }
   }
 }
