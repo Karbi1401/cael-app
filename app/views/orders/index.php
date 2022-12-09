@@ -39,12 +39,14 @@
                     <td>
                       <?php
                       if ($order->order_status == 0) {
-                        echo '<span class="badge badge-warning">Pending</span>';
+                        echo '<span class="badge badge-warning">Placed</span>';
                       } elseif ($order->order_status == 1) {
-                        echo '<span class="badge badge-default">On delivery</span>';
+                        echo '<span class="badge badge-default">In Kitchen</span>';
                       } elseif ($order->order_status == 2) {
-                        echo '<span class="badge badge-success">Completed</span>';
+                        echo '<span class="badge badge-success">On Delivery</span>';
                       } elseif ($order->order_status == 3) {
+                        echo '<span class="badge badge-danger">Completed</span>';
+                      } elseif ($order->order_status == 4) {
                         echo '<span class="badge badge-danger">Cancelled</span>';
                       }
                       ?>

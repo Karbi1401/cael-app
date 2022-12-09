@@ -79,6 +79,34 @@
       <div class="col">
         <div class="card mb-4">
           <div class="card-body">
+            <div class="table-responsive">
+              <table id="myTable" class="table table-striped display" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Order Scheduled</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Product Quantity</th>
+                    <th>Total</th>
+                    <th>Order Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($data['orders'] as $order) : ?>
+                    <tr>
+                      <td><?php echo $order->order_id; ?></td>
+                      <td><?php echo $order->order_schedule; ?></td>
+                      <td><?php echo $order->product_name; ?></td>
+                      <td><?php echo $order->product_price; ?></td>
+                      <td><?php echo $order->product_quantity; ?></td>
+                      <td><?php echo $order->product_price * $order->product_quantity; ?></td>
+                      <td><?php echo $order->order_status; ?></td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

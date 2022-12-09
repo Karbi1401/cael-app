@@ -386,4 +386,34 @@ class Order
       return false;
     }
   }
+
+  public function getAllOrderDetailsUser($user_id)
+  {
+    $this->db->query("SELECT *, 
+                      orderdetails.order_detail_id as orderDetailID, 
+                      orders.order_id as orderID, 
+                      products.product_id as productID, 
+                      users.user_id as userID
+                      FROM orderdetails 
+                      INNER JOIN orders 
+                      ON orderdetails.order_id = orders.order_id
+                      INNER JOIN products 
+                      ON orderdetails.product_id = products.product_id 
+                      INNER JOIN users 
+                      ON orderdetails.user_id = users.user_id
+                      INNER JOIN shippings
+                      ON orderdetails.shipping_id = shippings.shipping_id
+                      WHERE orders.user_id = :user_id
+                      ORDER BY orderdetails.created_at ASC;");
+
+    $this->db->bind(':user_id', $user_id);
+
+    $orders_detail = $this->db->resultSet();
+
+    if ($orders_detail) {
+      return $orders_detail;
+    } else {
+      return false;
+    }
+  }
 }

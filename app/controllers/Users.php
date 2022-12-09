@@ -5,6 +5,7 @@ class Users extends Controller
   {
     $this->userModel = $this->model('User');
     $this->cartModel = $this->model('Cart');
+    $this->orderModel = $this->model('Order');
   }
 
   public function signup()
@@ -279,9 +280,11 @@ class Users extends Controller
       redirect('admins/index');
     } elseif ($_SESSION['user_id'] == $user_id) {
       $users = $this->userModel->getUserByID($user_id);
+      $orders = $this->orderModel->getAllOrderDetailsUser($user_id);
 
       $data = [
         'users' => $users,
+        'orders' => $orders
       ];
 
       $this->view('users/profile', $data);
