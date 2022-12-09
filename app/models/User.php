@@ -193,6 +193,37 @@ class User
     }
   }
 
+  public function editUserAsAdmin($data)
+  {
+    $this->db->query("UPDATE users 
+                      SET user_username = :user_username,
+                      user_first_name = :user_first_name,
+                      user_last_name = :user_last_name,
+                      user_email = :user_email,
+                      user_contact = :user_contact,
+                      user_address = :user_address,
+                      user_city = :user_city,
+                      user_role = :user_role
+                      WHERE user_id = :user_id");
+
+    $this->db->bind(':user_id', $data['user_id']);
+    $this->db->bind(':user_username', $data['username']);
+    $this->db->bind(':user_first_name', $data['first_name']);
+    $this->db->bind(':user_last_name', $data['last_name']);
+    $this->db->bind(':user_email', $data['email']);
+    $this->db->bind(':user_contact', $data['contact_number']);
+    $this->db->bind(':user_address', $data['address']);
+    $this->db->bind(':user_city', $data['city']);
+    $this->db->bind(':user_role', $data['role']);
+
+    // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public function getAllUsers()
   {
     $this->db->query("SELECT * FROM users");
@@ -200,5 +231,47 @@ class User
     $results = $this->db->resultSet();
 
     return $results;
+  }
+
+  public function addUser($data)
+  {
+    // Create query
+    $this->db->query('INSERT INTO `users`
+                      (`user_first_name`, 
+                      `user_last_name`, 
+                      `user_email`, 
+                      `user_contact`, 
+                      `user_address`, 
+                      `user_city`, 
+                      `user_username`, 
+                      `user_password`, 
+                      `user_role`) 
+                      VALUES (:first_name,
+                      :last_name,
+                      :email,
+                      :contact_number,
+                      :address,
+                      :city,
+                      :username,
+                      :password,
+                      :role)');
+
+    // Bind values
+    $this->db->bind(':first_name', $data['first_name']);
+    $this->db->bind(':last_name', $data['last_name']);
+    $this->db->bind(':email', $data['email']);
+    $this->db->bind(':contact_number', $data['contact_number']);
+    $this->db->bind(':address', $data['address']);
+    $this->db->bind(':city', $data['city']);
+    $this->db->bind(':username', $data['username']);
+    $this->db->bind(':password', $data['password']);
+    $this->db->bind(':role', $data['role']);
+
+    // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -21,6 +21,7 @@
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Username</th>
+                  <th>Role</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -35,12 +36,21 @@
                     <td><?php echo $user->user_last_name; ?></td>
                     <td><?php echo $user->user_username; ?></td>
                     <td>
+                      <?php if ($user->user_role == 'user') : ?>
+                        <span class="badge badge-default">User</span>
+                      <?php elseif ($user->user_role == 'employee') : ?>
+                        <span class="badge badge-primary">Employee</span>
+                      <?php elseif ($user->user_role == 'admin') : ?>
+                        <span class="badge badge-secondary">Admin</span>
+                      <?php endif; ?>
+                    </td>
+                    <td>
                       <div class="d-flex justify-content-between">
-                        <a href="<?php echo URLROOT; ?>/orders/details/<?php echo $user->user_id; ?>"><i class="fa-solid fa-info blue-text" data-toggle="tooltip" data-placement="top" title="View User Contact Information"></i>
+                        <a href="<?php echo URLROOT; ?>/admins/userDetails/<?php echo $user->user_id; ?>"><i class="fa-solid fa-info blue-text" data-toggle="tooltip" data-placement="top" title="View User Contact Information"></i>
                         </a>
                         <a href="<?php echo URLROOT; ?>/products/editProductImage/<?php echo $user->user_id; ?>"><i class="fa-solid fa-image teal-text" data-toggle="tooltip" data-placement="top" title="Update User Image"></i>
                         </a>
-                        <a href="<?php echo URLROOT; ?>/products/edit/<?php echo $user->user_id; ?>"><i class="fa-solid fa-pen-to-square teal-text" data-toggle="tooltip" data-placement="top" title="Update User Information"></i>
+                        <a href="<?php echo URLROOT; ?>/admins/editUser/<?php echo $user->user_id; ?>"><i class="fa-solid fa-pen-to-square teal-text" data-toggle="tooltip" data-placement="top" title="Update User Information"></i>
                         </a>
                         <a onclick="deleteProduct()" href="<?php echo URLROOT; ?>/products/delete/<?php echo $user->user_id; ?>"><i class="fa-solid fa-trash red-text" data-toggle="tooltip" data-placement="top" title="Delete User Information"></i></a>
                       </div>
