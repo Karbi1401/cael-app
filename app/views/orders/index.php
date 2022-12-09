@@ -18,8 +18,8 @@
                   <th>Payment Method</th>
                   <th>Order Schedule</th>
                   <th>Rider Assigned</th>
-                  <th>Order Status</th>
                   <th>Payment Status</th>
+                  <th>Order Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -38,21 +38,6 @@
                     </td>
                     <td>
                       <?php
-                      if ($order->order_status == 0) {
-                        echo '<span class="badge badge-warning">Placed</span>';
-                      } elseif ($order->order_status == 1) {
-                        echo '<span class="badge badge-default">In Kitchen</span>';
-                      } elseif ($order->order_status == 2) {
-                        echo '<span class="badge badge-success">On Delivery</span>';
-                      } elseif ($order->order_status == 3) {
-                        echo '<span class="badge badge-danger">Completed</span>';
-                      } elseif ($order->order_status == 4) {
-                        echo '<span class="badge badge-danger">Cancelled</span>';
-                      }
-                      ?>
-                    </td>
-                    <td>
-                      <?php
                       if ($order->payment_status == 0) {
                         echo '<span class="badge badge-warning">Pending</span>';
                       } elseif ($order->payment_status == 1) {
@@ -61,6 +46,17 @@
                         echo '<span class="badge badge-danger">Cancelled</span>';
                       }
                       ?>
+                    </td>
+                    <td>
+                      <?php if ($order->order_status == 0) : ?>
+                        <a class="btn btn-warning btn-rounded btn-sm" href="<?php echo URLROOT; ?>/orders/changeOrderStatusInKitchen/<?php echo $order->order_id; ?>" role="button">
+                          Placed
+                        </a>
+                      <?php elseif ($order->order_status == 1) : ?>
+                        <a class="btn btn-secondary btn-rounded btn-sm" href="<?php echo URLROOT; ?>/orders/changeOrderStatusPlaced/<?php echo $order->order_id; ?>" role="button">
+                          In Kitchen
+                        </a>
+                      <?php endif; ?>
                     </td>
                     <td>
                       <div class="d-flex justify-content-around">

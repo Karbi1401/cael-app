@@ -183,4 +183,34 @@ class Orders extends Controller
       redirect('pages');
     }
   }
+
+  public function changeOrderStatusPlaced($order_id)
+  {
+    if (Auth::adminAuth()) {
+      if ($this->orderModel->changeOrderStatusPlaced($order_id)) {
+        success('order_message', '<i class="fa-solid fa-check mr-2"></i>Order Status Successfuly Changed to Placed!');
+        redirect('orders');
+      } else {
+        die('Something went wrong');
+        redirect('orders');
+      }
+    } else {
+      redirect('pages');
+    }
+  }
+
+  public function changeOrderStatusInKitchen($order_id)
+  {
+    if (Auth::adminAuth()) {
+      if ($this->orderModel->changeOrderStatusInKitchen($order_id)) {
+        success('order_message', '<i class="fa-solid fa-check mr-2"></i>Order Status Successfuly Changed to In Kitchen!');
+        redirect('orders');
+      } else {
+        die('Something went wrong');
+        redirect('orders');
+      }
+    } else {
+      redirect('pages');
+    }
+  }
 }

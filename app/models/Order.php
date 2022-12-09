@@ -151,6 +151,8 @@ class Order
                       ON orders.payment_id = payments.payment_id
                       WHERE
                       orders.order_status = 0
+                      OR
+                      orders.order_status = 1
                       AND payments.payment_status = 0
                       ORDER BY orders.created_at ASC;");
 
@@ -178,7 +180,7 @@ class Order
                       INNER JOIN riders
                       ON orders.rider_id = riders.rider_id
                       WHERE
-                      orders.order_status = 1
+                      orders.order_status = 2
                       AND payments.payment_status = 0
                       ORDER BY orders.created_at ASC;");
 
@@ -192,7 +194,7 @@ class Order
     $this->db->query("UPDATE orders 
                       SET order_status = :order_status
                       WHERE order_id = :order_id");
-    $this->db->bind(':order_status', 1);
+    $this->db->bind(':order_status', 2);
     $this->db->bind(':order_id', $order_id);
 
     return $this->db->execute();
@@ -203,7 +205,7 @@ class Order
     $this->db->query("UPDATE orders 
                       SET order_status = :order_status
                       WHERE order_id = :order_id");
-    $this->db->bind(':order_status', 2);
+    $this->db->bind(':order_status', 3);
     $this->db->bind(':order_id', $order_id);
 
     return $this->db->execute();
@@ -214,7 +216,7 @@ class Order
     $this->db->query("UPDATE orders 
                       SET order_status = :order_status
                       WHERE order_id = :order_id");
-    $this->db->bind(':order_status', 3);
+    $this->db->bind(':order_status', 4);
     $this->db->bind(':order_id', $order_id);
 
     return $this->db->execute();
@@ -292,7 +294,7 @@ class Order
                       INNER JOIN riders
                       ON orders.rider_id = riders.rider_id
                       WHERE
-                      orders.order_status = 2
+                      orders.order_status = 3
                       AND payments.payment_status = 1
                       ORDER BY orders.created_at ASC;");
 
@@ -318,7 +320,7 @@ class Order
                       INNER JOIN payments 
                       ON orders.payment_id = payments.payment_id
                       WHERE
-                      orders.order_status = 3
+                      orders.order_status = 4
                       AND payments.payment_status = 2
                       ORDER BY orders.created_at ASC;");
 
@@ -341,7 +343,7 @@ class Order
                       ON orders.shipping_id = shippings.shipping_id
                       INNER JOIN orderdetails
                       ON orders.order_id = orderdetails.order_id
-                      WHERE order_status = 2 
+                      WHERE order_status = 3 
                       AND payment_status = 1
                       AND orders.order_id = :order_id");
     $this->db->bind(':order_id', $order_id);
@@ -371,7 +373,7 @@ class Order
                       ON orders.shipping_id = shippings.shipping_id
                       INNER JOIN orderdetails
                       ON orders.order_id = orderdetails.order_id
-                      WHERE order_status = 3
+                      WHERE order_status = 4
                       AND payment_status = 2
                       AND orders.order_id = :order_id");
     $this->db->bind(':order_id', $order_id);
@@ -415,5 +417,27 @@ class Order
     } else {
       return false;
     }
+  }
+
+  public function changeOrderStatusPlaced($order_id)
+  {
+    $this->db->query("UPDATE orders 
+                      SET order_status = :order_status
+                      WHERE order_id = :order_id");
+    $this->db->bind(':order_status', 0);
+    $this->db->bind(':order_id', $order_id);
+
+    return $this->db->execute();
+  }
+
+  public function changeOrderStatusInKitchen($order_id)
+  {
+    $this->db->query("UPDATE orders 
+                      SET order_status = :order_status
+                      WHERE order_id = :order_id");
+    $this->db->bind(':order_status', 1);
+    $this->db->bind(':order_id', $order_id);
+
+    return $this->db->execute();
   }
 }

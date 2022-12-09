@@ -101,7 +101,19 @@
                       <td><?php echo $order->product_price; ?></td>
                       <td><?php echo $order->product_quantity; ?></td>
                       <td><?php echo $order->product_price * $order->product_quantity; ?></td>
-                      <td><?php echo $order->order_status; ?></td>
+                      <td>
+                        <?php if ($order->order_status == 0) : ?>
+                          <span class="badge badge-warning">Placed</span>
+                        <?php elseif ($order->order_status == 1) : ?>
+                          <span class="badge badge-primary">In Kitchen</span>
+                        <?php elseif ($order->order_status == 2) : ?>
+                          <span class="badge badge-default">On Delivery</span>
+                        <?php elseif ($order->order_status == 3) : ?>
+                          <span class="badge badge-success">Completed</span>
+                        <?php elseif ($order->order_status == 4) : ?>
+                          <span class="badge badge-danger">Cancelled</span>
+                        <?php endif; ?>
+                      </td>
                     </tr>
                   <?php endforeach; ?>
                 </tbody>

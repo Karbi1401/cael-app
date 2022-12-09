@@ -40,13 +40,9 @@
                     </td>
                     <td>
                       <?php
-                      if ($order->order_status == 0) {
-                        echo '<span class="badge badge-warning">Pending</span>';
-                      } elseif ($order->order_status == 1) {
-                        echo '<span class="badge badge-default">On Delivery</span>';
-                      } elseif ($order->order_status == 2) {
+                      if ($order->order_status == 3) {
                         echo '<span class="badge badge-success">Completed</span>';
-                      } elseif ($order->order_status == 3) {
+                      } elseif ($order->order_status == 4) {
                         echo '<span class="badge badge-danger">Cancelled</span>';
                       }
                       ?>
