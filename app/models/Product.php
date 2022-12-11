@@ -25,7 +25,14 @@ class Product
 
   public function getProductByID($id)
   {
-    $this->db->query('SELECT * FROM products WHERE product_id = :id');
+    $this->db->query('SELECT *,
+                      products.product_id as productID,
+                      categories.category_id as categoryID,
+                      categories.category_name as categoryName
+                      FROM products 
+                      INNER JOIN categories
+                      ON products.category_id = categories.category_id
+                      WHERE product_id = :id');
 
     $this->db->bind(':id', $id);
 
