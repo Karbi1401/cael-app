@@ -500,20 +500,4 @@ class Order
     $this->db->execute();
     return $this->db->rowCount();
   }
-
-  public function completeOrderSales()
-  {
-    $this->db->query('SELECT *,
-                      orders.order_id as orderID,
-                      payments.payment_id as paymentID 
-                      FROM orders
-                      INNER JOIN payments
-                      ON orders.payment_id = payments.payment_id 
-                      WHERE order_status = 3
-                      AND payment_status = 1;');
-
-    $order_sales = $this->db->resultSet();
-
-    return $order_sales;
-  }
 }
