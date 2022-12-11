@@ -14,6 +14,7 @@
 <script src="<?php echo URLROOT; ?>/backend/js/mdb.min.js"></script>
 <script src="<?php echo URLROOT; ?>/backend/js/addons/datatables.min.js"></script>
 <script src="<?php echo URLROOT; ?>/backend/js/addons/datatables-select.min.js"></script>
+<script src="https://cdnjs.com/libraries/Chart.js"></script>
 <script>
   $(".button-collapse").sideNav();
 

@@ -4,13 +4,29 @@ class Admins extends Controller
   public function __construct()
   {
     $this->adminModel = $this->model('Admin');
+    $this->orderModel = $this->model('Order');
     $this->userModel = $this->model('User');
   }
 
   public function index()
   {
     if (Auth::adminAuth() || Auth::employeeAuth()) {
-      $this->view('admins/index');
+      $totalSales = $this->orderModel->totalSales();
+      $totalPendingOrders = $this->orderModel->pendingOrders();
+      $totalCancelledOrders = $this->orderModel->cancelledOrders();
+      $totalCompletedOrders = $this->orderModel->completeOrders();
+      $orders = $this->orderModel->getAllCompletedOrders();
+
+      //Set Data
+      $data = [
+        'total_sales' => $totalSales->sum,
+        'total_pending_orders' => $totalPendingOrders,
+        'total_completed_orders' => $totalCompletedOrders,
+        'total_cancelled_orders' => $totalCancelledOrders,
+        'orders' => $orders
+      ];
+
+      $this->view('admins/index', $data);
     } else {
       redirect('pages');
     }

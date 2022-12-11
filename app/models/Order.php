@@ -440,4 +440,80 @@ class Order
 
     return $this->db->execute();
   }
+
+  public function totalSales()
+  {
+    $this->db->query("SELECT 
+                      SUM(order_total) 
+                      AS sum
+                      FROM orders
+                      WHERE order_status = 1");
+    $this->db->execute();
+
+    $totalSales = $this->db->single();
+
+    if ($totalSales) {
+      return $totalSales;
+    } else {
+      return false;
+    }
+  }
+
+  public function pendingOrders()
+  {
+    $this->db->query('SELECT *,
+                      orders.order_id as orderID,
+                      payments.payment_id as paymentID 
+                      FROM orders
+                      INNER JOIN payments
+                      ON orders.payment_id = payments.payment_id 
+                      WHERE order_status = 0
+                      AND payment_status = 0');
+    $this->db->execute();
+    return $this->db->rowCount();
+  }
+
+  public function cancelledOrders()
+  {
+    $this->db->query('SELECT *,
+                      orders.order_id as orderID,
+                      payments.payment_id as paymentID 
+                      FROM orders
+                      INNER JOIN payments
+                      ON orders.payment_id = payments.payment_id 
+                      WHERE order_status = 4
+                      AND payment_status = 0;');
+    $this->db->execute();
+    return $this->db->rowCount();
+  }
+
+  public function completeOrders()
+  {
+    $this->db->query('SELECT *,
+                      orders.order_id as orderID,
+                      payments.payment_id as paymentID 
+                      FROM orders
+                      INNER JOIN payments
+                      ON orders.payment_id = payments.payment_id 
+                      WHERE order_status = 3
+                      AND payment_status = 1;');
+    $this->db->execute();
+    return $this->db->rowCount();
+  }
+
+  public function completeOrderSales()
+  {
+    $this->db->query('SELECT *,
+                      orders.order_id as orderID,
+                      payments.payment_id as paymentID 
+                      FROM orders
+                      INNER JOIN payments
+                      ON orders.payment_id = payments.payment_id 
+                      WHERE order_status = 3
+                      AND payment_status = 1;');
+
+    $order_sales = $this->db->resultSet();
+
+    return $order_sales;
+  }
 }
