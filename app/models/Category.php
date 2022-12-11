@@ -51,11 +51,10 @@ class Category
   public function addCategory($data)
   {
     $this->db->query("INSERT INTO 
-            					categories (category_name, user_id)
-            					VALUES (:category_name, :user_id)");
+            					categories (category_name)
+            					VALUES (:category_name)");
 
     $this->db->bind(':category_name', $data['category_name']);
-    $this->db->bind(':user_id', $_SESSION['user_id']);
 
     if ($this->db->execute()) {
       return true;
