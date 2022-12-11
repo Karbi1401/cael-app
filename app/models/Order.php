@@ -482,7 +482,7 @@ class Order
                       INNER JOIN payments
                       ON orders.payment_id = payments.payment_id 
                       WHERE order_status = 4
-                      AND payment_status = 0;');
+                      AND payment_status = 2;');
     $this->db->execute();
     return $this->db->rowCount();
   }

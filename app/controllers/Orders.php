@@ -186,7 +186,7 @@ class Orders extends Controller
 
   public function changeOrderStatusPlaced($order_id)
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       if ($this->orderModel->changeOrderStatusPlaced($order_id)) {
         success('order_message', '<i class="fa-solid fa-check mr-2"></i>Order Status Successfuly Changed to Placed!');
         redirect('orders');
@@ -201,7 +201,7 @@ class Orders extends Controller
 
   public function changeOrderStatusInKitchen($order_id)
   {
-    if (Auth::adminAuth()) {
+    if (Auth::adminAuth() || Auth::employeeAuth()) {
       if ($this->orderModel->changeOrderStatusInKitchen($order_id)) {
         success('order_message', '<i class="fa-solid fa-check mr-2"></i>Order Status Successfuly Changed to In Kitchen!');
         redirect('orders');
