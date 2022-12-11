@@ -2,7 +2,7 @@
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
 <main>
-  <div class="container">
+  <div class="container vh-100 d-flex justify-content-center align-items-center">
     <section id="productDetails" class="pb-5">
       <div class="card mt-5 hoverable">
         <div class="row d-flex justify-content-center align-items-center">
