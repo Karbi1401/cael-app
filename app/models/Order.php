@@ -447,7 +447,7 @@ class Order
                       SUM(order_total) 
                       AS sum
                       FROM orders
-                      WHERE order_status = 1");
+                      WHERE order_status = 3");
     $this->db->execute();
 
     $totalSales = $this->db->single();
