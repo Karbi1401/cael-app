@@ -39,16 +39,6 @@
         </div>
       </div>
     </section>
-
-    <div class="divider-new">
-      <h2 class="h2-responsive font-weight-bold orange-text mx-3">
-        Related Products
-      </h2>
-    </div>
-
-    <section class="pb-5">
-
-    </section>
   </div>
 </main>
 
